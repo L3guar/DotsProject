@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Created by Sezer on 4/02/2015.
  */
-public class RandomKleur {
+public class RandomKleur extends Bol {
     private Color kleur;
     private int kleurGetal;
 
@@ -19,7 +19,8 @@ public class RandomKleur {
             case 1:
                 kleur = Color.YELLOW;
                 break;
-            case 2: kleur = Color.BLUE;
+            case 2:
+                kleur = Color.BLUE;
                 break;
             case 3:
                 kleur = Color.RED;

@@ -13,7 +13,10 @@ public class GUIView {
         Bol[] dots = new Bol[49];
 
         Bol bolletje = new Bol();
+
+        System.out.println(bolletje.verschijnen());
     }
+
 
 
 }
