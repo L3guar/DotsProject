@@ -1,7 +1,7 @@
 package view;
 
-import model.Bol;
-import model.RandomKleur;
+import controller.Spel;
+import model.*;
 
 import model.Bol;
 
@@ -11,6 +11,9 @@ import model.Bol;
 public class GUIView {
     public static void main(String[] args) {
         Bol[] dots = new Bol[49];
+        Slang slang = new Slang();
+        Highscore highscore = new Highscore();
+        Spel spel = new Spel();
 
         Bol bolletje = new Bol();
 
