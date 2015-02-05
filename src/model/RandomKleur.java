@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Created by Sezer on 4/02/2015.
  */
-public class RandomKleur extends Bol {
+public class RandomKleur  {
     private Color kleur;
     private int kleurGetal;
 
