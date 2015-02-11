@@ -7,7 +7,6 @@ import java.awt.*;
 public class Bol {
 
     private Color kleur;
-    private String poopy;
 
     public void verbinden() {
 

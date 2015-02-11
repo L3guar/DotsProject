@@ -7,4 +7,8 @@ import java.awt.*;
  */
 public class Slang{
     private Color kleur;
+
+    public void trekLijn(){
+
+    }
 }
