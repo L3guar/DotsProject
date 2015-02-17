@@ -8,6 +8,10 @@ public class Bol {
 
     private Color kleur;
 
+    public Bol(Color kleur) {
+        this.kleur = kleur;
+    }
+
     public void verbinden() {
 
     }

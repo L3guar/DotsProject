@@ -13,7 +13,7 @@ public class RandomKleur  {
     Random rand = new Random();
 
     public Color getKleur() {
-        kleurGetal = rand.nextInt(3)+1;
+        kleurGetal = rand.nextInt(4)+1;
 
         switch (kleurGetal) {
             case 1:
