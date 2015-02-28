@@ -102,9 +102,9 @@ public class Bord extends JFrame{
     //layout maken
     public void maakLayout() {
 
-        JPanel menuPanel = new JPanel(new GridBagLayout());
+        menuPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        JPanel gridPanel = new JPanel(new GridLayout(0, 7, 5, 5));
+        gridPanel = new JPanel(new GridLayout(0, 7, 5, 5));
 
 
         add(menuPanel, BorderLayout.PAGE_START);
