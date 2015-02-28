@@ -9,7 +9,7 @@ import java.awt.*;
 public class Bord extends JFrame{
 
     Slang slang = new Slang();
-    Tile[] tile = new Tile[6];
+    Tile[][] tile = new Tile[6][6];
 
     private JPanel menuPanel;
     private JPanel gridPanel;
@@ -97,8 +97,9 @@ public class Bord extends JFrame{
         for (int x = 0; x < 6; x++) {
             for (int y = 0; y < 6; y++) {
 
+
                 RandomKleur kleur = new RandomKleur();
-                tile[x] = new Tile(kleur.getKleur());
+                tile[x][y] = new Tile(kleur.getKleur());
                 gridPanel.add(new myDots());
             }
         }
@@ -110,11 +111,13 @@ public class Bord extends JFrame{
         protected void paintComponent(Graphics g) {
             int h = getHeight();
             int w = getWidth();
-            int counter = 0;
             super.paintComponent(g);
 
-             g.setColor(tile[counter].getKleur());
-            counter+=1;
+            for (int x = 0; x < 6; x++) {
+                for (int y =0; y < 6; y++) {
+                    g.setColor(tile[x][y].getKleur());
+                }
+            }
 
             g.fillOval(h / 2, w / 2, 33, 33);
 
