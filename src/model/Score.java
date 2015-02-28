@@ -5,11 +5,13 @@ package model;
  */
 public class Score {
 
+
     private int punten;
 
     public void puntenOmhoog(){
     }
 
-    
-
+    public int getPunten() {
+        return punten;
+    }
 }
