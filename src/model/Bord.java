@@ -1,5 +1,7 @@
 package model;
 
+import javafx.scene.layout.Border;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -18,6 +20,11 @@ public class Bord extends JFrame{
     private JPanel menuPanel;
     private JPanel gridPanel;
 
+    //private JPanel linePanel;
+    private JLabel leftLabel;
+    private JLabel rightLabel;
+    private JLabel underLabel;
+
     private JLabel levelTitel;
     private JLabel levelNummer;
 
@@ -34,7 +41,6 @@ public class Bord extends JFrame{
 
     public Bord() {
         super("Dots");
-        //setLocationRelativeTo(this);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         maakAttributen();
@@ -42,12 +48,11 @@ public class Bord extends JFrame{
         maakLayout();
         pack();
 
-        setSize(650, 775);
+        setSize(575, 725);
+        setLocationRelativeTo(this);
         setResizable(false);
         setVisible(true);
 
-        getContentPane();
-        repaint();
 
         //TODO automatic size
 
@@ -80,10 +85,10 @@ public class Bord extends JFrame{
 
         timeTitel = new JLabel("time");
         timeTitel.setFont(font);
-        timeTitel.setForeground(Color.YELLOW);
+        timeTitel.setForeground(Color.ORANGE);
         timeNummer = new JLabel("4");
         timeNummer.setFont(font);
-        timeNummer.setForeground(Color.YELLOW);
+        timeNummer.setForeground(Color.ORANGE);
 
         //pauze afbeelding en resizen
         ImageIcon icon = new ImageIcon("image/PauseButton.png");
@@ -94,7 +99,6 @@ public class Bord extends JFrame{
         pauzeIcoon = new JLabel(new ImageIcon(bi));
         pauzeIcoon.setVerticalAlignment(JLabel.CENTER);
     }
-
 
 
     //listeners maken
@@ -124,21 +128,34 @@ public class Bord extends JFrame{
         });
     }
 
-
-
     //layout maken
     public void maakLayout() {
 
         menuPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gridPanel = new JPanel(new GridLayout(0, 7, 5, 5));
 
+        /* PROBEERSEL VAN LINE
+        linePanel = new JPanel(new GridLayout(1,0,0,0));
+        linePanel.setPreferredSize(new Dimension(50,50));
+         PROBEERSEL VAN LINE */
 
+        gridPanel = new JPanel(new GridLayout(0, 7, 1, 1));
+        leftLabel = new JLabel("");
+        leftLabel.setPreferredSize(new Dimension(0, 0));
+        rightLabel = new JLabel("");
+        rightLabel.setPreferredSize(new Dimension(25, 0));
+        underLabel = new JLabel("");
+        underLabel.setPreferredSize(new Dimension(0, 50));
+
+        //add(linePanel, BorderLayout.PAGE_START);
         add(menuPanel, BorderLayout.PAGE_START);
+        add(leftLabel, BorderLayout.WEST);
         add(gridPanel, BorderLayout.CENTER);
+        add(rightLabel, BorderLayout.EAST);
+        add(underLabel, BorderLayout.PAGE_END);
 
         //menu attributen aan menu toevoegen en ordenen volgens het GridBagLayout principe
-        gbc.insets = new Insets(20, 20, 20, 20);
+        gbc.insets = new Insets(15, 15, 15, 15);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -176,6 +193,7 @@ public class Bord extends JFrame{
         menuPanel.add(timeNummer, gbc);
 
 
+
         //grid met dots toevoegen
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
@@ -201,10 +219,9 @@ public class Bord extends JFrame{
             int h = getHeight();
             int w = getWidth();
             g.setColor(tile.getKleur());
-            g.fillOval(h / 2, w / 2, 33, 33);
+            g.fillOval(h / 2, w / 2, 29, 29);
         }
     }
-
     private class MyLine extends JPanel{
 
         int x;

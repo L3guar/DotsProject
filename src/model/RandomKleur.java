@@ -17,7 +17,7 @@ public class RandomKleur  {
 
         switch (kleurGetal) {
             case 1:
-                kleur = Color.YELLOW;
+                kleur = Color.ORANGE;
                 break;
             case 2:
                 kleur = Color.BLUE;
