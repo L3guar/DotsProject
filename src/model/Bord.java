@@ -2,6 +2,9 @@ package model;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 /**
@@ -39,8 +42,8 @@ public class Bord extends JFrame{
         maakLayout();
         pack();
 
-        setSize(660, 775);
-
+        setSize(650, 775);
+        setResizable(false);
         setVisible(true);
 
         getContentPane();
@@ -97,14 +100,38 @@ public class Bord extends JFrame{
     //listeners maken
     public void maakListeners() {
 
+        this.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+                gridPanel.add(new MyLine(e.getX(), e.getY()));
+                repaint();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                gridPanel.add(new MyLine(e.getX(), e.getY()));
+                repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                gridPanel.add(new MyLine(e.getX(), e.getY()));
+                repaint();
+            }
+        });
     }
+
+
 
     //layout maken
     public void maakLayout() {
 
-        JPanel menuPanel = new JPanel(new GridBagLayout());
+        menuPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        JPanel gridPanel = new JPanel(new GridLayout(0, 7, 5, 5));
+        gridPanel = new JPanel(new GridLayout(0, 7, 5, 5));
 
 
         add(menuPanel, BorderLayout.PAGE_START);
@@ -170,10 +197,31 @@ public class Bord extends JFrame{
 
         @Override
         protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
             int h = getHeight();
             int w = getWidth();
             g.setColor(tile.getKleur());
             g.fillOval(h / 2, w / 2, 33, 33);
+        }
+    }
+
+    private class MyLine extends JPanel{
+
+        int x;
+        int y;
+
+        public MyLine(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            int h = getHeight();
+            int w = getWidth();
+            g.drawLine(h, w, x, y);
+
         }
     }
 }
