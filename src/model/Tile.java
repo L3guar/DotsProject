@@ -8,22 +8,22 @@ import java.awt.*;
  */
 public class Tile extends JPanel{
 
-    private int x;
-    private int y;
+    private Point positietile;
     private Color kleur;
 
-    public Tile(Color kleur, int x, int y) {
+    public Tile(Color kleur) {
         this.kleur = kleur;
-        this.x = x;
-        this.y = y;
-        setOpaque(true);
     }
 
     public Color getKleur() {
         return kleur;
     }
 
-    public void setKleur(Color kleur) {
-        this.kleur = kleur;
+    public void setPositietile(Point positietile) {
+        this.positietile = positietile;
+    }
+
+    public Point getPositietile() {
+        return positietile;
     }
 }

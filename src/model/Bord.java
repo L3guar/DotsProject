@@ -196,12 +196,21 @@ public class Bord extends JFrame{
             for (int y = 0; y < 7; y++) {
 
                 final RandomKleur kleur = new RandomKleur();
-                final Tile tile = new Tile(kleur.getKleur(), x, y);
+                final Tile tile = new Tile(kleur.getKleur());
                 gridPanel.add(new MyDots(tile));
+                
+                tile.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+
+                        System.out.println("kiekeboe");
+                    }
+                });
                 gridPanel.addMouseListener(new MouseAdapter() {
 
                     @Override
                     public void mousePressed(MouseEvent e) {
+
                         tileColor(e, tile);
                     }
 
@@ -229,7 +238,8 @@ public class Bord extends JFrame{
 
     private void tileColor(MouseEvent e, Tile tile) {
         firstTile = tile.getKleur();
-        System.out.println(firstTile);
+        System.out.println(e.getPoint());
+        System.out.println(tile.getPositietile());
     }
 
     private void tileCheck(MouseEvent e, Tile tile){
