@@ -69,12 +69,13 @@ public class Bord extends JFrame{
         levelNummer.setFont(font);
         levelNummer.setForeground(Color.RED);
 
+        Color dankgreen = new Color(3,173,26);
         scoreTitel = new JLabel("score");
         scoreTitel.setFont(font);
-        scoreTitel.setForeground(Color.GREEN);
+        scoreTitel.setForeground(dankgreen);
         scoreNummer = new JLabel("2");
         scoreNummer.setFont(font);
-        scoreNummer.setForeground(Color.GREEN);
+        scoreNummer.setForeground(dankgreen);
 
         targetTitel = new JLabel("target");
         targetTitel.setFont(font);

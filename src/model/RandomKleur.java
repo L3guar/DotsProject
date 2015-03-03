@@ -26,7 +26,8 @@ public class RandomKleur  {
                 kleur = Color.RED;
                 break;
             case 4:
-                kleur = Color.GREEN;
+                Color dankgreen = new Color(3,173,26);
+                kleur = dankgreen;
                 break;
             default:break;
         }
