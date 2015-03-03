@@ -1,5 +1,6 @@
 package model;
 
+import javafx.scene.control.Cell;
 import javafx.scene.layout.Border;
 
 import javax.swing.*;
@@ -15,7 +16,8 @@ import java.awt.image.BufferedImage;
 public class Bord extends JFrame{
 
     Slang slang = new Slang();
-    Tile[][] tile = new Tile[7][7];
+    Color firstTile;
+    Color secondTile;
 
     private JPanel menuPanel;
     private JPanel gridPanel;
@@ -107,24 +109,18 @@ public class Bord extends JFrame{
 
         this.addMouseMotionListener(new MouseAdapter() {
             @Override
-            public void mouseDragged(MouseEvent e) {
-                super.mouseDragged(e);
-                gridPanel.add(new MyLine(e.getX(), e.getY()));
-                repaint();
-            }
-
-            @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                gridPanel.add(new MyLine(e.getX(), e.getY()));
-                repaint();
+                for (int i = 0; i < 7; i++){
+                    for (int z = 0; i < 7; i++){
+
+                    }
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
-                gridPanel.add(new MyLine(e.getX(), e.getY()));
-                repaint();
             }
         });
     }
@@ -140,7 +136,7 @@ public class Bord extends JFrame{
         linePanel.setPreferredSize(new Dimension(50,50));
          PROBEERSEL VAN LINE */
 
-        gridPanel = new JPanel(new GridLayout(0, 7, 1, 1));
+        gridPanel = new JPanel(new GridLayout(7, 7, 1, 1));
         leftLabel = new JLabel("");
         leftLabel.setPreferredSize(new Dimension(0, 0));
         rightLabel = new JLabel("");
@@ -198,10 +194,48 @@ public class Bord extends JFrame{
         //grid met dots toevoegen
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
-                RandomKleur kleur = new RandomKleur();
-                tile[x][y] = new Tile(kleur.getKleur());
-                gridPanel.add(new MyDots(tile[x][y]));
+
+                final RandomKleur kleur = new RandomKleur();
+                final Tile tile = new Tile(kleur.getKleur(), x, y);
+                gridPanel.add(new MyDots(tile));
+                gridPanel.addMouseListener(new MouseAdapter() {
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        tileColor(e, tile);
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        tileCheck(e, tile);
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
+
+
+
             }
+        }
+    }
+
+    private void tileColor(MouseEvent e, Tile tile) {
+        firstTile = tile.getKleur();
+        System.out.println(firstTile);
+    }
+
+    private void tileCheck(MouseEvent e, Tile tile){
+        secondTile = tile.getKleur();
+        if (firstTile == secondTile){
+
         }
     }
 
