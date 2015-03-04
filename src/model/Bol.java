@@ -12,6 +12,7 @@ public class Bol extends JButton{
 
     private int x;
     private int y;
+    private int kleurIndicator;
     private int kleurGetal;
     Random rand = new Random();
     CoordinatenTest model = new CoordinatenTest();
@@ -21,6 +22,7 @@ public class Bol extends JButton{
 
         switch (kleurGetal) {
             case 1:
+                kleurIndicator = 1;
                 setIcon(new ImageIcon("image/geel.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -29,6 +31,7 @@ public class Bol extends JButton{
                 });
                 break;
             case 2:
+                kleurIndicator = 2;
                 setIcon(new ImageIcon("image/blauw.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -37,6 +40,7 @@ public class Bol extends JButton{
                 });
                 break;
             case 3:
+                kleurIndicator = 3;
                 setIcon(new ImageIcon("image/rood.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -45,6 +49,7 @@ public class Bol extends JButton{
                 });
                 break;
             case 4:
+                kleurIndicator = 4;
                 setIcon(new ImageIcon("image/dankgreen.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -54,6 +59,10 @@ public class Bol extends JButton{
                 break;
             default:break;
         }
+    }
+
+    public int getKleurIndicator() {
+        return kleurIndicator;
     }
 
     public void setX(int x) {
@@ -66,4 +75,3 @@ public class Bol extends JButton{
 
 
 }
-

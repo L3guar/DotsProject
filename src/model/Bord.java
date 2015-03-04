@@ -15,6 +15,8 @@ public class Bord extends JFrame{
 
     private List<Bol> bollenlijst;
 
+    private int eersteIndicator = 0;
+
     private JPanel menuPanel;
     private JPanel gridPanel;
 
@@ -168,6 +170,9 @@ public class Bord extends JFrame{
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
                 Bol bol = new Bol();
+                final int bolX = bol.getX();
+                int bolY = bol.getY();
+                final int kleurIndicator = bol.getKleurIndicator();
                 bol.setX(x);
                 bol.setY(y);
                 gridPanel.add(bol);
@@ -180,7 +185,11 @@ public class Bord extends JFrame{
                 bol.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        super.mouseClicked(e);
+                        if (eersteIndicator == kleurIndicator) {
+                            //if komt hier
+                        } else {
+                            eersteIndicator = kleurIndicator;
+                        }
                     }
                 });
             }
