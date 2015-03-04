@@ -9,8 +9,8 @@ import javax.swing.*;
  */
 public class Controller {
 
-    //  Player player = new Player();
-    Help help = new Help();
+    Player player = new Player();
+   // Help help = new Help();
 
     public void newGame() {
     }

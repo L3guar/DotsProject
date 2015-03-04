@@ -52,7 +52,7 @@ public class Highscore extends JFrame {
         titelLabel.setFont(font);
         titelLabel.setForeground(Color.WHITE);
 
-        highscoreLijst = new JLabel("Sezer   5\nMick     4\nYannick  2");
+        highscoreLijst = new JLabel("<html><center>Sezer   25<br>Mick     24<br>Yannick  22<br>Sezer   22<br>Ismail  19<br>Ilias   14<br>Mick    9</center></html>");
         highscoreLijst.setFont(font);
         highscoreLijst.setForeground(Color.WHITE);
 

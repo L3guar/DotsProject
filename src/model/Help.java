@@ -2,6 +2,8 @@ package model;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by Sezer on 4/03/2015.
@@ -57,6 +59,13 @@ public class Help extends JFrame {
     }
 
     private void maakListeners() {
+        terug.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Menu menu = new Menu();
+                dispose();
+            }
+        });
 
     }
 

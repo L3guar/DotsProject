@@ -11,7 +11,6 @@ import java.awt.event.MouseEvent;
 public class Menu extends JFrame{
 
     private JPanel knopPanel;
-    private JPanel headerPanel;
 
     private JButton play;
     private JButton highscores;
@@ -19,6 +18,7 @@ public class Menu extends JFrame{
     private JButton exit;
 
     private JLabel dotsTitel;
+    private JLabel welkomTekst;
 
     private Color dankRed = new Color(178, 8, 8);
 
@@ -80,6 +80,17 @@ public class Menu extends JFrame{
         dotsTitel = new JLabel("Dots the Game");
         dotsTitel.setFont(font);
         dotsTitel.setForeground(Color.WHITE);
+        dotsTitel.setBackground(dankRed);
+        dotsTitel.setOpaque(true);
+        dotsTitel.setHorizontalAlignment(JLabel.CENTER);
+
+        //WELKOM
+        welkomTekst = new JLabel("Welkom *NAAM*");
+        welkomTekst.setFont(font);
+        welkomTekst.setForeground(Color.WHITE);
+        welkomTekst.setBackground(dankRed);
+        welkomTekst.setOpaque(true);
+        welkomTekst.setHorizontalAlignment(JLabel.CENTER);
     }
 
     private void maakListeners() {
@@ -161,15 +172,13 @@ public class Menu extends JFrame{
 
     private void maakLayout() {
         knopPanel = new JPanel(new GridLayout(0, 2, 10, 10)) ;
-        headerPanel = new JPanel(new FlowLayout());
 
         add(knopPanel, BorderLayout.CENTER);
-        add(headerPanel, BorderLayout.PAGE_START);
+
+        add(dotsTitel, BorderLayout.PAGE_START);
+        add(welkomTekst, BorderLayout.PAGE_END);
 
         knopPanel.setBackground(dankRed);
-        headerPanel.setBackground(dankRed);
-
-        headerPanel.add(dotsTitel);
 
         knopPanel.add(play);
         knopPanel.add(help);
