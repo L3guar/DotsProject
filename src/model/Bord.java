@@ -14,13 +14,10 @@ import java.util.List;
 public class Bord extends JFrame{
 
     private List<Bol> bollenlijst;
-    Color firstTile;
-    Color secondTile;
 
     private JPanel menuPanel;
     private JPanel gridPanel;
 
-    //private JPanel linePanel;
     private JLabel leftLabel;
     private JLabel rightLabel;
     private JLabel underLabel;
@@ -52,9 +49,6 @@ public class Bord extends JFrame{
         setLocationRelativeTo(this);
         setResizable(false);
         setVisible(true);
-
-
-        //TODO automatic size
 
     }
 
@@ -108,22 +102,6 @@ public class Bord extends JFrame{
     //listeners maken
     public void maakListeners() {
 
-        this.addMouseMotionListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                for (int i = 0; i < 7; i++) {
-                    for (int z = 0; i < 7; i++) {
-
-                    }
-                }
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-            }
-        });
     }
 
     //layout maken
@@ -131,11 +109,6 @@ public class Bord extends JFrame{
 
         menuPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
-        /* PROBEERSEL VAN LINE
-        linePanel = new JPanel(new GridLayout(1,0,0,0));
-        linePanel.setPreferredSize(new Dimension(50,50));
-         PROBEERSEL VAN LINE */
 
         gridPanel = new JPanel(new GridLayout(7, 7, 1, 1));
         leftLabel = new JLabel("");
@@ -204,29 +177,16 @@ public class Bord extends JFrame{
                 bol.setBorderPainted(false);
                 bol.setContentAreaFilled(false);
                 bol.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+                bol.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        super.mouseClicked(e);
+                    }
+                });
             }
         }
 
 
     }
-//    private class MyLine extends JPanel{
-//
-//        int x;
-//        int y;
-//
-//        public MyLine(int x, int y) {
-//            this.x = x;
-//            this.y = y;
-//        }
-//
-//        @Override
-//        protected void paintComponent(Graphics g) {
-//            super.paintComponent(g);
-//            int h = getHeight();
-//            int w = getWidth();
-//            g.drawLine(h, w, x, y);
-//
-//        }
-//    }
 
 }
