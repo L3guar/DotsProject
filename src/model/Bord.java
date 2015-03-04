@@ -1,21 +1,18 @@
 package model;
 
-import javafx.scene.control.Cell;
-import javafx.scene.layout.Border;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.*;
 
 /**
  * Created by Mick on 11/02/2015.
  */
 public class Bord extends JFrame{
 
-    Slang slang = new Slang();
+    private  bollenlijst;
     Color firstTile;
     Color secondTile;
 
@@ -101,6 +98,9 @@ public class Bord extends JFrame{
         g.drawImage(img, 0, 0, 82, 81, null);
         pauzeIcoon = new JLabel(new ImageIcon(bi));
         pauzeIcoon.setVerticalAlignment(JLabel.CENTER);
+
+        bollenlijst = new ArrayList<>();
+
     }
 
 
@@ -196,44 +196,7 @@ public class Bord extends JFrame{
             for (int y = 0; y < 7; y++) {
 
                 final RandomKleur kleur = new RandomKleur();
-                final Tile tile = new Tile(kleur.getKleur());
-                gridPanel.add(new MyDots(tile));
-                
-                tile.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
 
-                        System.out.println("kiekeboe");
-                    }
-                });
-                gridPanel.addMouseListener(new MouseAdapter() {
-
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-
-                        tileColor(e, tile);
-                    }
-
-                    @Override
-                    public void mouseReleased(MouseEvent e) {
-
-                    }
-
-                    @Override
-                    public void mouseEntered(MouseEvent e) {
-                        tileCheck(e, tile);
-                    }
-
-                    @Override
-                    public void mouseExited(MouseEvent e) {
-
-                    }
-                });
-
-
-
-            }
-        }
     }
 
     private void tileColor(MouseEvent e, Tile tile) {
