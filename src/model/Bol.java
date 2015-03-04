@@ -13,6 +13,26 @@ public class Bol extends JButton{
     private int kleurGetal;
     Random rand = new Random();
 
+    public Bol(){
+        kleurGetal = rand.nextInt(4)+1;
+
+        switch (kleurGetal) {
+            case 1:
+                setIcon(new ImageIcon(getClass().getResource("/image/geel.png")));
+                break;
+            case 2:
+                setIcon(new ImageIcon(getClass().getResource("/image/blauw.png")));
+                break;
+            case 3:
+                setIcon(new ImageIcon(getClass().getResource("/image/rood.png")));
+                break;
+            case 4:
+                setIcon(new ImageIcon(getClass().getResource("image/dankgreen.png")));
+                break;
+            default:break;
+        }
+    }
+
     public void setX(int x) {
         if (x >= 0) this.x = x;
     }
@@ -20,27 +40,6 @@ public class Bol extends JButton{
     public void setY(int y) {
         if (y >= 0) this.y = y;
     }
-
-    public Bol(){
-        kleurGetal = rand.nextInt(4)+1;
-
-        switch (kleurGetal) {
-            case 1:
-                setIcon(new ImageIcon(getClass().getResource("/images/geel.png")));
-                break;
-            case 2:
-                setIcon(new ImageIcon(getClass().getResource("/images/blauw.png")));
-                break;
-            case 3:
-                setIcon(new ImageIcon(getClass().getResource("/images/rood.png")));
-                break;
-            case 4:
-                setIcon(new ImageIcon(getClass().getResource("/images/dankgreen.png")));
-                break;
-            default:break;
-        }
-    }
-
 
 
 }

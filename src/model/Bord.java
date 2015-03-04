@@ -6,13 +6,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Mick on 11/02/2015.
  */
 public class Bord extends JFrame{
 
-    private  bollenlijst;
+    private List<Bol> bollenlijst;
     Color firstTile;
     Color secondTile;
 
@@ -111,8 +112,8 @@ public class Bord extends JFrame{
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                for (int i = 0; i < 7; i++){
-                    for (int z = 0; i < 7; i++){
+                for (int i = 0; i < 7; i++) {
+                    for (int z = 0; i < 7; i++) {
 
                     }
                 }
@@ -190,63 +191,35 @@ public class Bord extends JFrame{
         menuPanel.add(timeNummer, gbc);
 
 
-
         //grid met dots toevoegen
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
-
-                final RandomKleur kleur = new RandomKleur();
-
-    }
-
-    private void tileColor(MouseEvent e, Tile tile) {
-        firstTile = tile.getKleur();
-        System.out.println(e.getPoint());
-        System.out.println(tile.getPositietile());
-    }
-
-    private void tileCheck(MouseEvent e, Tile tile){
-        secondTile = tile.getKleur();
-        if (firstTile == secondTile){
-
-        }
-    }
-
-    //dots laten zien en kleuren
-    private class MyDots extends JPanel {
-
-        private Tile tile;
-
-        public MyDots(Tile tile) {
-            this.tile = tile;
+                Bol bol = new Bol();
+                bol.setX(x);
+                bol.setY(y);
+                gridPanel.add(bol);
+                bollenlijst.add(bol);
+            }
         }
 
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            int h = getHeight();
-            int w = getWidth();
-            g.setColor(tile.getKleur());
-            g.fillOval(h / 2, w / 2, 29, 29);
-        }
-    }
-    private class MyLine extends JPanel{
-
-        int x;
-        int y;
-
-        public MyLine(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            int h = getHeight();
-            int w = getWidth();
-            g.drawLine(h, w, x, y);
-
-        }
+//    private class MyLine extends JPanel{
+//
+//        int x;
+//        int y;
+//
+//        public MyLine(int x, int y) {
+//            this.x = x;
+//            this.y = y;
+//        }
+//
+//        @Override
+//        protected void paintComponent(Graphics g) {
+//            super.paintComponent(g);
+//            int h = getHeight();
+//            int w = getWidth();
+//            g.drawLine(h, w, x, y);
+//
+//        }
+//    }
     }
 }
