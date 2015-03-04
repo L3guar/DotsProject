@@ -2,6 +2,8 @@ package model;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.nio.ByteOrder;
 
 /**
@@ -62,6 +64,13 @@ public class Player extends JFrame {
     }
 
     private void maakListeners() {
+        doorgaan.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                Menu menu = new Menu();
+                dispose();
+            }
+        });
 
     }
 
@@ -76,4 +85,6 @@ public class Player extends JFrame {
         add(doorgaan, BorderLayout.PAGE_END);
 
     }
+
+
 }

@@ -9,12 +9,10 @@ import javax.swing.*;
  */
 public class Controller {
 
-   // Menu menu = new Menu();
+    //  Player player = new Player();
+    Help help = new Help();
 
-//    Bord bord = new Bord();
-    Player player = new Player();
-
-    public void newGame(){
+    public void newGame() {
     }
 
 }

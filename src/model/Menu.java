@@ -105,6 +105,12 @@ public class Menu extends JFrame{
         //HELP KNOP
         help.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseReleased(MouseEvent e) {
+                Help help = new Help();
+                dispose();
+            }
+
+            @Override
             public void mouseEntered(MouseEvent e) {
                 help.setIcon(new ImageIcon("image/helpHover.png"));
             }
