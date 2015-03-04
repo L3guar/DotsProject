@@ -199,9 +199,16 @@ public class Bord extends JFrame{
                 bol.setY(y);
                 gridPanel.add(bol);
                 bollenlijst.add(bol);
+                bol.setOpaque(false);
+                bol.setFocusPainted(false);
+                bol.setBorderPainted(false);
+                bol.setContentAreaFilled(false);
+                bol.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
             }
         }
 
+
+    }
 //    private class MyLine extends JPanel{
 //
 //        int x;
@@ -221,5 +228,5 @@ public class Bord extends JFrame{
 //
 //        }
 //    }
-    }
+
 }
