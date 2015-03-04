@@ -9,10 +9,9 @@ import javax.swing.*;
  */
 public class Controller {
 
-/*    Menu menu = new Menu(); */
+    Menu menu = new Menu();
 
-    Bord bord = new Bord();
-    Highscore highscore = new Highscore();
+//    Bord bord = new Bord();
     Player player = new Player();
 
     public void newGame(){
