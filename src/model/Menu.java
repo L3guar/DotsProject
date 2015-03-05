@@ -153,6 +153,7 @@ public class Menu extends JFrame{
 
         //EXIT KNOP
         exit.addMouseListener(new MouseAdapter() {
+            //sluit het venster
             @Override
             public void mouseReleased(MouseEvent e) {
                 dispose();

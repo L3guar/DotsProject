@@ -59,6 +59,7 @@ public class Help extends JFrame {
     }
 
     private void maakListeners() {
+        //sluit Help venster en opent menu venster
         terug.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {

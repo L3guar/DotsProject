@@ -64,6 +64,7 @@ public class Player extends JFrame {
     }
 
     private void maakListeners() {
+        //sluit Player venster en opent het menu venster
         doorgaan.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
