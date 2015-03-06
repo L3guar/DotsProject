@@ -109,7 +109,7 @@ public class Menu extends JFrame{
         play.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                Bord bord = new Bord();
+                Board board = new Board();
                 dispose();
             }
 

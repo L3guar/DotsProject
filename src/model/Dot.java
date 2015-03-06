@@ -1,6 +1,5 @@
 package model;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -8,7 +7,7 @@ import java.util.Random;
 /**
  * Created by Sezer on 4/02/2015.
  */
-public class Bol extends JButton{
+public class Dot extends JButton{
 
     private int x;
     private int y;
@@ -17,7 +16,7 @@ public class Bol extends JButton{
     Random rand = new Random();
     CoordinatenTest model = new CoordinatenTest();
 
-    public Bol(){
+    public Dot(){
         kleurGetal = rand.nextInt(4)+1;
 
         switch (kleurGetal) {
@@ -26,7 +25,7 @@ public class Bol extends JButton{
                 setIcon(new ImageIcon("image/geel.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        Bol.this.model.doeZet(x, y);
+                        Dot.this.model.doeZet(x, y);
                     }
                 });
                 break;
@@ -35,7 +34,7 @@ public class Bol extends JButton{
                 setIcon(new ImageIcon("image/blauw.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        Bol.this.model.doeZet(x, y);
+                        Dot.this.model.doeZet(x, y);
                     }
                 });
                 break;
@@ -44,7 +43,7 @@ public class Bol extends JButton{
                 setIcon(new ImageIcon("image/rood.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        Bol.this.model.doeZet(x, y);
+                        Dot.this.model.doeZet(x, y);
                     }
                 });
                 break;
@@ -53,7 +52,7 @@ public class Bol extends JButton{
                 setIcon(new ImageIcon("image/dankgreen.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        Bol.this.model.doeZet(x, y);
+                        Dot.this.model.doeZet(x, y);
                     }
                 });
                 break;
@@ -61,7 +60,7 @@ public class Bol extends JButton{
         }
     }
 
-    public int getKleurIndicator() {
+    public int getColorIndicator() {
         return kleurIndicator;
     }
 
