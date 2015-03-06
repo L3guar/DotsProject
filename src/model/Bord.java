@@ -1,12 +1,12 @@
-package model;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.util.*;
-import java.util.List;
+        package model;
+        import javax.swing.*;
+        import java.awt.*;
+        import java.awt.event.MouseAdapter;
+        import java.awt.event.MouseEvent;
+        import java.awt.image.BufferedImage;
+        import java.util.*;
+        import java.util.List;
 
 /**
  * Created by Mick on 11/02/2015.
@@ -16,6 +16,14 @@ public class Bord extends JFrame{
     private List<Bol> bollenlijst;
 
     private int eersteIndicator = 0;
+    private int eersteXclick = 1000;
+    private int eersteYclick = 1000;
+    private int eersteXCoord;
+    private int eersteYCoord;
+    private int x1;
+    private int x2;
+    private int y1;
+    private int y2;
 
     private JPanel menuPanel;
     private JPanel gridPanel;
@@ -113,6 +121,7 @@ public class Bord extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
 
         gridPanel = new JPanel(new GridLayout(7, 7, 1, 1));
+        gridPanel.setOpaque(true);
         leftLabel = new JLabel("");
         leftLabel.setPreferredSize(new Dimension(0, 0));
         rightLabel = new JLabel("");
@@ -169,33 +178,164 @@ public class Bord extends JFrame{
         //grid met dots toevoegen
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
-                Bol bol = new Bol();
-                final int bolX = bol.getX();
-                int bolY = bol.getY();
+                final Bol bol = new Bol();
                 final int kleurIndicator = bol.getKleurIndicator();
                 bol.setX(x);
                 bol.setY(y);
+                final int bolX = bol.gogetX();
+                final int bolY = bol.gogetY();
                 gridPanel.add(bol);
                 bollenlijst.add(bol);
-                bol.setOpaque(false);
+                bol.setOpaque(true);
                 bol.setFocusPainted(false);
                 bol.setBorderPainted(false);
                 bol.setContentAreaFilled(false);
-                bol.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+                bol.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
                 bol.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        if (eersteIndicator == kleurIndicator) {
-                            //if komt hier
+                    if (eersteIndicator == kleurIndicator) {
+
+                        if (eersteXclick == bolX-1 && eersteYclick == bolY-1){
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+
+                        } else if (eersteXclick == bolX && eersteYclick == bolY-1){
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+                        } else if (eersteXclick == bolX+1 && eersteYclick == bolY-1){
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+                        } else if (eersteXclick == bolX-1 && eersteYclick == bolY) {
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+                        } else if (eersteXclick == bolX+1 && eersteYclick == bolY) {
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+                        } else if (eersteXclick == bolX-1 && eersteYclick == bolY+1){
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+                        } else if (eersteXclick == bolX && eersteYclick == bolY+1){
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
+                        } else if (eersteXclick == bolX+1 && eersteYclick == bolY+1) {
+                            System.out.println("yay");
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            Slang slang = new Slang(eersteXCoord, eersteYCoord, bol.getX(), bol.getY());
+
+                            x1 = slang.getX1();
+                            x2 = slang.getX2();
+                            y1 = slang.getY1();
+                            y2 = slang.getY2();
+
+                            add(new MaakSlang(), BorderLayout.CENTER);
+
                         } else {
-                            eersteIndicator = kleurIndicator;
+                            eersteXclick = bolX;
+                            eersteYclick = bolY;
+                            System.out.println("te ver!");
                         }
                     }
-                });
+                    else {
+                        eersteIndicator = kleurIndicator;
+                        eersteXclick = bolX;
+                        eersteYclick = bolY;
+                        eersteXCoord = bol.getX();
+                        eersteYCoord = bol.getY();
+                    };
             }
-        }
+        });
 
 
     }
 
 }
+    } private class MaakSlang extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            //Dikte van lijnen instellen
+            g2d.setStroke(new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
+
+            //Teken lijn(en)
+            g2d.setColor(Color.black);
+            g2d.drawLine(x1,y1,x2,y2);
+
+        }
+    }
+}
+

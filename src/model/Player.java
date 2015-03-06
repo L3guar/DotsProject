@@ -21,7 +21,7 @@ public class Player extends JFrame {
     private Color dankRed = new Color(178, 8, 8);
 
     public Player() throws HeadlessException {
-        super("Dots | Naam opgeven");
+        super("Dots | Enter name");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         maakAttributen();
@@ -46,7 +46,7 @@ public class Player extends JFrame {
         naamveldPaneel = new JPanel();
         naamveldPaneel.setBackground(dankRed);
 
-        titelLabel = new JLabel("Geef uw naam in:");
+        titelLabel = new JLabel("Enter name:");
         titelLabel.setFont(font);
         titelLabel.setForeground(Color.WHITE);
 
@@ -56,7 +56,7 @@ public class Player extends JFrame {
         naamVeld.setBackground(dankRed);
         naamVeld.setHorizontalAlignment(JLabel.CENTER);
 
-        doorgaan = new JButton("Doorgaan");
+        doorgaan = new JButton("Continue");
         doorgaan.setFont(font);
         doorgaan.setForeground(Color.WHITE);
         doorgaan.setBackground(dankRed);

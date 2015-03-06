@@ -73,5 +73,13 @@ public class Bol extends JButton{
         if (y >= 0) this.y = y;
     }
 
+    public int gogetX() {
+        return x;
+    }
+
+    public int gogetY() {
+        return y;
+    }
+
 
 }
