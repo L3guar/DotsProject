@@ -2,6 +2,8 @@ package model;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.nio.ByteOrder;
@@ -65,6 +67,20 @@ public class Player extends JFrame {
     }
 
     private void maakListeners() {
+        //keylistener toevoegen, als je op enter klikt gaat hij naar het menu venster
+        naamVeld.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_ENTER) {
+                    //zet naam dat je hebt ingevoerd voor Welkom + *NAAM* in menu class
+                    Menu.setNaam(naamVeld.getText());
+                    Menu menu = new Menu();
+                    dispose();
+                }
+            }
+        });
+
         //sluit Player venster en opent het menu venster
         doorgaan.addMouseListener(new MouseAdapter() {
             @Override
