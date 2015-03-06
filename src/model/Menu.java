@@ -21,6 +21,7 @@ public class Menu extends JFrame{
     private JLabel welkomTekst;
 
     private Color dankRed = new Color(178, 8, 8);
+    private static String naam;
 
     public Menu() throws HeadlessException {
         super("Dots | Menu");
@@ -35,6 +36,16 @@ public class Menu extends JFrame{
         setLocationRelativeTo(this);
         setResizable(false);
         setVisible(true);
+    }
+
+    //naam verkrijgen voor welkom + *NAAM*
+    public static String getNaam() {
+        return naam;
+    }
+
+    //naam zetten voor welkom + *NAAM*
+    public static void setNaam(String naam) {
+        Menu.naam = naam;
     }
 
     private void maakAttributen() {
@@ -84,8 +95,8 @@ public class Menu extends JFrame{
         dotsTitel.setOpaque(true);
         dotsTitel.setHorizontalAlignment(JLabel.CENTER);
 
-        //WELKOM
-        welkomTekst = new JLabel("Welkom *NAAM*");
+        //WELKOM & NAAM VAN SPELER opvragen
+        welkomTekst = new JLabel("Welcome " + Menu.getNaam());
         welkomTekst.setFont(font);
         welkomTekst.setForeground(Color.WHITE);
         welkomTekst.setBackground(dankRed);

@@ -46,7 +46,7 @@ public class Player extends JFrame {
         naamveldPaneel = new JPanel();
         naamveldPaneel.setBackground(dankRed);
 
-        titelLabel = new JLabel("Enter name:");
+        titelLabel = new JLabel("Please enter your name:");
         titelLabel.setFont(font);
         titelLabel.setForeground(Color.WHITE);
 
@@ -55,6 +55,7 @@ public class Player extends JFrame {
         naamVeld.setForeground(Color.WHITE);
         naamVeld.setBackground(dankRed);
         naamVeld.setHorizontalAlignment(JLabel.CENTER);
+
 
         doorgaan = new JButton("Continue");
         doorgaan.setFont(font);
@@ -68,6 +69,8 @@ public class Player extends JFrame {
         doorgaan.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
+                //zet naam dat je hebt ingevoerd voor Welkom + *NAAM* in menu class
+                Menu.setNaam(naamVeld.getText());
                 Menu menu = new Menu();
                 dispose();
             }
@@ -84,7 +87,6 @@ public class Player extends JFrame {
         add(naamVeld, BorderLayout.CENTER);
 
         add(doorgaan, BorderLayout.PAGE_END);
-
     }
 
 
