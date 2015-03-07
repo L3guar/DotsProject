@@ -59,6 +59,7 @@ public class Menu extends JFrame{
         play.setBorderPainted(false);
         play.setContentAreaFilled(false);
         play.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        play.setToolTipText("Play");
 
         //HIGHSCORES KNOP
         highscores = new JButton();
@@ -68,6 +69,7 @@ public class Menu extends JFrame{
         highscores.setBorderPainted(false);
         highscores.setContentAreaFilled(false);
         highscores.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        highscores.setToolTipText("Highscores");
 
         //HELP KNOP
         help = new JButton();
@@ -77,6 +79,7 @@ public class Menu extends JFrame{
         help.setBorderPainted(false);
         help.setContentAreaFilled(false);
         help.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        help.setToolTipText("Help");
 
         //EXIT KNOP
         exit = new JButton();
@@ -86,6 +89,7 @@ public class Menu extends JFrame{
         exit.setBorderPainted(false);
         exit.setContentAreaFilled(false);
         exit.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        exit.setToolTipText("Exit");
 
         //TITEL
         dotsTitel = new JLabel("Dots the Game");

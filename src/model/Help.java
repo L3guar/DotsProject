@@ -36,27 +36,30 @@ public class Help extends JFrame {
     private void maakAttributen() {
         Font font = new Font("Impact", Font.PLAIN, 30);
 
-        titelLabel = new JLabel("Game manual");
+        //titel help venster
+        titelLabel = new JLabel("<html><u>Game manual</u></html>");
         titelLabel.setFont(font);
         titelLabel.setForeground(Color.WHITE);
         titelLabel.setBackground(dankRed);
         titelLabel.setHorizontalAlignment(JLabel.CENTER);
         titelLabel.setOpaque(true);
 
+        //uitleg en afbeelding help venster
         ImageIcon helpImage = new ImageIcon("image/helpImage.png");
-        infoTekst = new JLabel("<html><center>" +
+        infoTekst = new JLabel("<html>" +
                                 "Dots is a game where you have to connect the dots with the same color. <br>" +
                                 "After you've connected the dots, new ones will appear. <br>" +
                                 "Make sure you keep an eye on the time, your score and the target score.<br>" +
                                 "You can pause the game by pressing the pause button.<br>" +
-                                "After you've completed a game, your name will appear in the highscores if it has enough points." +
-                                "<br></center></html>", helpImage, JLabel.CENTER);
+                                "After you've completed a game, your name will appear in the highscores if you have enough points." +
+                                "<br>", helpImage, JLabel.CENTER);
         infoTekst.setFont(font);
         infoTekst.setForeground(Color.WHITE);
         infoTekst.setBackground(dankRed);
         infoTekst.setHorizontalAlignment(JLabel.CENTER);
         infoTekst.setOpaque(true);
 
+        //terug knop help venster
         terug = new JLabel("Back");
         terug.setFont(font);
         terug.setForeground(Color.WHITE);
@@ -77,6 +80,7 @@ public class Help extends JFrame {
 
     }
 
+    //maak layout
     private void maakLayout() {
         add(titelLabel, BorderLayout.PAGE_START);
         add(infoTekst, BorderLayout.CENTER);

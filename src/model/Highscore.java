@@ -48,7 +48,7 @@ public class Highscore extends JFrame {
         textPaneel.setBackground(dankRed);
         terugPaneel.setBackground(dankRed);
 
-        titelLabel = new JLabel("Highscores");
+        titelLabel = new JLabel("<html><u>Highscores</u></html>");
         titelLabel.setFont(font);
         titelLabel.setForeground(Color.WHITE);
 
