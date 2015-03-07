@@ -110,7 +110,7 @@ public class Board extends JFrame {
         layeredPane.setOpaque(false);
         layeredPane.setBounds(rectangle);
 
-        gridPanel = new JPanel(new GridLayout(7, 7, 1, 1));
+        gridPanel = new JPanel(new GridLayout(7, 7, 0, 0));
         gridPanel.setOpaque(false);
         gridPanel.setBackground(new Color(0, 0, 0, 0));
         gridPanel.setBounds(rectangle);
