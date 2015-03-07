@@ -170,19 +170,19 @@ public class Board extends JFrame {
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
                 final Dot dot = new Dot();
-                final int colorIndicator = dot.getColorIndicator();
-                dot.setX(y);
-                dot.setY(x);
-                final int bolX = dot.gogetX();
-                final int bolY = dot.gogetY();
-                gridPanel.add(dot);
-                bollenlijst.add(dot);
-                dot.setOpaque(true);
-                dot.setFocusPainted(false);
-                dot.setBorderPainted(false);
-                dot.setContentAreaFilled(false);
-                dot.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-                dot.addMouseListener(new MouseAdapter() {
+                    final int colorIndicator = dot.getColorIndicator();
+                    dot.setX(y);
+                    dot.setY(x);
+                    final int bolX = dot.gogetX();
+                    final int bolY = dot.gogetY();
+                    gridPanel.add(dot);
+                    bollenlijst.add(dot);
+                    dot.setOpaque(true);
+                    dot.setFocusPainted(false);
+                    dot.setBorderPainted(false);
+                    dot.setContentAreaFilled(false);
+                    dot.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+                    dot.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         if (firstIndicator == colorIndicator) {
@@ -249,6 +249,7 @@ public class Board extends JFrame {
                                 dotCounter = 7 * firstYcoord + (firstXcoord + 1);
                                 dot.setIcon(new ImageIcon("image/transparent.png"));
                                 gridPanel.add(dot, dotCounter);
+                                connectcounter = 0;
                             }
                         }
                     }
