@@ -212,6 +212,11 @@ public class Board extends JFrame {
                                 firstYcoord = y2;
                             } else if (firstXclick == bolX && firstYclick == bolY) {
                                 lines.clear();
+                                if(connectcounter > 2){
+                                    int LocationBol = 6;
+                                    LocationBol *= bolY + bolX+1 ;
+                                    gridPanel.remove((Integer) connect.get(LocationBol));
+                                }
                             } else {
                                 firstXclick = bolX;
                                 firstYclick = bolY;
@@ -232,11 +237,12 @@ public class Board extends JFrame {
                             color = dot.getColor();
                             lines.clear();
 
+
+                            if(connectcounter > 2){
                             int LocationBol = 6;
-
                             LocationBol *= bolY + bolX+1 ;
-
                             gridPanel.remove((Integer) connect.get(LocationBol));
+                            }
                         }
                     }
                 });
