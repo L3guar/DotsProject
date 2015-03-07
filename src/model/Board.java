@@ -171,8 +171,8 @@ public class Board extends JFrame {
             for (int y = 0; y < 7; y++) {
                 final Dot dot = new Dot();
                 final int colorIndicator = dot.getColorIndicator();
-                dot.setX(x);
-                dot.setY(y);
+                dot.setX(y);
+                dot.setY(x);
                 final int bolX = dot.gogetX();
                 final int bolY = dot.gogetY();
                 gridPanel.add(dot);
@@ -212,10 +212,17 @@ public class Board extends JFrame {
                                 firstYcoord = y2;
                             } else if (firstXclick == bolX && firstYclick == bolY) {
                                 lines.clear();
-                                if(connectcounter > 2){
-                                    int LocationBol = 6;
-                                    LocationBol *= bolY + bolX+1 ;
-                                    gridPanel.remove((Integer) connect.get(LocationBol));
+                                if (connectcounter > 2) {
+                                    for (int i = 0; i < connect.size(); i+=2) {
+
+                                            int first = (int) connect.get(i);
+                                            int second = (int) connect.get(i+1);
+
+                                            int dotCounter;
+                                            dotCounter = 7 * second + (first);
+                                            dot.setIcon(new ImageIcon("image/transparent.png"));
+                                            gridPanel.add(dot, dotCounter);
+                                    }
                                 }
                             } else {
                                 firstXclick = bolX;
@@ -237,24 +244,25 @@ public class Board extends JFrame {
                             color = dot.getColor();
                             lines.clear();
 
-
-                            if(connectcounter > 2){
-                            int LocationBol = 6;
-                            LocationBol *= bolY + bolX+1 ;
-                            gridPanel.remove((Integer) connect.get(LocationBol));
+                            if (connectcounter > 2) {
+                                int dotCounter;
+                                dotCounter = 7 * firstYcoord + (firstXcoord + 1);
+                                dot.setIcon(new ImageIcon("image/transparent.png"));
+                                gridPanel.add(dot, dotCounter);
                             }
                         }
                     }
+
                 });
             }
         }
     }
 
+
     private class MakeLine extends JPanel {
 
 
-
-        public void addLine(Line line){
+        public void addLine(Line line) {
             lines.add(line);
         }
 
@@ -273,6 +281,7 @@ public class Board extends JFrame {
             }
         }
     }
+
 
     private class Line {
         private int x1, x2, y1, y2;
