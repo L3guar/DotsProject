@@ -1,5 +1,6 @@
 package model;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -12,6 +13,7 @@ public class Dot extends JButton{
     private int x;
     private int y;
     private int kleurIndicator;
+    private Color color;
     private int kleurGetal;
     Random rand = new Random();
     CoordinatenTest model = new CoordinatenTest();
@@ -22,6 +24,7 @@ public class Dot extends JButton{
         switch (kleurGetal) {
             case 1:
                 kleurIndicator = 1;
+                color = Color.orange;
                 setIcon(new ImageIcon("image/geel.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -31,6 +34,7 @@ public class Dot extends JButton{
                 break;
             case 2:
                 kleurIndicator = 2;
+                color = Color.blue;
                 setIcon(new ImageIcon("image/blauw.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -40,6 +44,7 @@ public class Dot extends JButton{
                 break;
             case 3:
                 kleurIndicator = 3;
+                color = color.red;
                 setIcon(new ImageIcon("image/rood.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -49,6 +54,7 @@ public class Dot extends JButton{
                 break;
             case 4:
                 kleurIndicator = 4;
+                color = color.green;
                 setIcon(new ImageIcon("image/dankgreen.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -80,5 +86,7 @@ public class Dot extends JButton{
         return y;
     }
 
-
+    public Color getColor() {
+        return color;
+    }
 }
