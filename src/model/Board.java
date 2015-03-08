@@ -211,11 +211,12 @@ public class Board extends JFrame {
                                 connect.add(firstXclick);
                                 connect.add(firstYclick);
                                 connectcounter += 1;
-                                // TE VERWIJDEREN
+                                // TE VERWIJDEREN ->
+
                                 for (int i = 0; i < connect.size(); i++) {
                                     System.out.println(connect.get(i));
                                 }
-                                // TE VERWIJDEREN
+                                //  <- TE VERWIJDEREN
                                 makeLine.addLine(new Line(x1, x2, y1, y2, color));
                                 makeLine.repaint();
                                 gridPanel.repaint();
@@ -230,13 +231,9 @@ public class Board extends JFrame {
                                     // verdwijder de dots die connected waren
                                     for (int i = 0; i < connect.size(); i+=2) {
 
-                                        int first = (int) connect.get(i);
-                                        int second = (int) connect.get(i+1);
-
-                                        int dotCounter;
-                                        dotCounter = 7 * second + (first);
-                                        dot.setIcon(new ImageIcon("image/transparent.png"));
-                                        gridPanel.add(dot, dotCounter);
+                                        int connectY = (int) connect.get(i+1);
+                                        int connectX = (int) connect.get(i);
+                                        bollenlijst.get(7 * connectY + connectX + 1).setIcon(bollenlijst.get((7 * connectY + connectX + 1)-7).getIcon());
                                     }
                                 }
                             } else {
