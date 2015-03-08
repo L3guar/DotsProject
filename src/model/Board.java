@@ -2,6 +2,8 @@ package model;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -45,6 +47,10 @@ public class Board extends JFrame {
 
     private MakeLine makeLine;
 
+    //TIMER
+    Timer timer;
+    int counter = 60;
+
     public Board() {
         super("Dots");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -61,31 +67,52 @@ public class Board extends JFrame {
     //attributen maken en titels opmaken
     public void makeAttributes() {
         Font font = new Font("Impact", Font.PLAIN, 30);
+        Color dankgreen = new Color(3, 173, 26);
+
         levelTitle = new JLabel("level");
         levelTitle.setFont(font);
         levelTitle.setForeground(Color.RED);
+
         levelNumber = new JLabel("1");
         levelNumber.setFont(font);
         levelNumber.setForeground(Color.RED);
-        Color dankgreen = new Color(3, 173, 26);
+
         scoreTitle = new JLabel("score");
         scoreTitle.setFont(font);
         scoreTitle.setForeground(dankgreen);
+
         scoreNumber = new JLabel("2");
         scoreNumber.setFont(font);
         scoreNumber.setForeground(dankgreen);
+
         targetTitle = new JLabel("target");
         targetTitle.setFont(font);
         targetTitle.setForeground(Color.BLUE);
+
         targetNumber = new JLabel("3");
         targetNumber.setFont(font);
         targetNumber.setForeground(Color.BLUE);
+
         timeTitle = new JLabel("time");
         timeTitle.setFont(font);
         timeTitle.setForeground(Color.ORANGE);
-        timeNumber = new JLabel("4");
+
+        timeNumber = new JLabel("60");
         timeNumber.setFont(font);
         timeNumber.setForeground(Color.ORANGE);
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timeNumber.setText(String.valueOf(counter));
+                counter--;
+                if (counter <= -1) {
+                    timer.stop();
+                }
+            }
+        });
+        timer.start();
+
+
         //pauze afbeelding en resizen
         ImageIcon icon = new ImageIcon("image/PauseButton.png");
         Image img = icon.getImage();
@@ -94,6 +121,7 @@ public class Board extends JFrame {
         g.drawImage(img, 0, 0, 82, 81, null);
         pauseIcon = new JLabel(new ImageIcon(bi));
         pauseIcon.setVerticalAlignment(JLabel.CENTER);
+
         bollenlijst = new ArrayList<>();
     }
 
