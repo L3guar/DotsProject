@@ -237,11 +237,26 @@ public class Board extends JFrame {
 
                                         if (((7 * connectY + connectX)-7) < 0){
                                             bollenlijst.get(7 * connectY + connectX).setKleurGetal();
+                                        } else if (((7 * connectY + connectX)-14) < 0){
+
+                                            if (bollenlijst.get((7 * connectY + connectX) - 7).isConnected()) {
+
+                                                bollenlijst.get(7 * connectY + connectX).setKleurGetal();
+                                                bollenlijst.get((7 * connectY + connectX)-7).setKleurGetal();
+
+                                            } else {
+                                                bollenlijst.get(7 * connectY + connectX).setIcon(bollenlijst.get((7 * connectY + connectX) - 7).getIcon());
+                                                bollenlijst.get((7 * connectY + connectX)-7).setKleurGetal();
+                                            }
+
                                         }
 
-                                        //bollenlijst.get((7 * connectY + connectX) - 7).setIcon(bollenlijst.get((7 * connectY + connectX) - 14).getIcon());
+                                        bollenlijst.get(7 * connectY + connectX).setConnected(false);
 
                                     }
+                                    connectcounter = 0;
+                                    firstIndicator = 4;
+
                                 }
                             } else {
                                 System.out.println("te ver!");
@@ -262,13 +277,6 @@ public class Board extends JFrame {
                             lines.clear();
                             makeLine.repaint();
 
-                            if (connectcounter > 1) {
-                                int dotCounter;
-                                dotCounter = 7 * firstYcoord + (firstXcoord + 1);
-                                dot.setIcon(new ImageIcon("image/transparent.png"));
-                                gridPanel.add(dot, dotCounter);
-                                connectcounter = 0;
-                            }
                         }
                     }
 
