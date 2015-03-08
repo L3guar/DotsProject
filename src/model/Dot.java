@@ -15,6 +15,7 @@ public class Dot extends JButton{
     private int kleurIndicator;
     private Color color;
     private int kleurGetal;
+    private boolean connected;
     Random rand = new Random();
     CoordinatenTest model = new CoordinatenTest();
 
@@ -66,6 +67,35 @@ public class Dot extends JButton{
         }
     }
 
+    public void setKleurGetal() {
+
+        kleurGetal = rand.nextInt(4)+1;
+        switch (kleurGetal) {
+            case 1:
+                kleurIndicator = 1;
+                color = Color.orange;
+                setIcon(new ImageIcon("image/geel.png"));
+                break;
+            case 2:
+                kleurIndicator = 2;
+                color = Color.blue;
+                setIcon(new ImageIcon("image/blauw.png"));
+                break;
+            case 3:
+                kleurIndicator = 3;
+                color = color.red;
+                setIcon(new ImageIcon("image/rood.png"));
+                break;
+            case 4:
+                kleurIndicator = 4;
+                color = color.green;
+                setIcon(new ImageIcon("image/dankgreen.png"));
+                break;
+            default:
+                break;
+        }
+    }
+
     public int getColorIndicator() {
         return kleurIndicator;
     }
@@ -88,5 +118,13 @@ public class Dot extends JButton{
 
     public Color getColor() {
         return color;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+
+    public boolean isConnected() {
+        return connected;
     }
 }

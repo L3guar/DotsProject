@@ -210,6 +210,7 @@ public class Board extends JFrame {
                                 // voeg de lijn toe aan array
                                 connect.add(firstXclick);
                                 connect.add(firstYclick);
+                                dot.setConnected(true);
                                 connectcounter += 1;
                                 // TE VERWIJDEREN ->
 
@@ -233,7 +234,13 @@ public class Board extends JFrame {
 
                                         int connectY = (int) connect.get(i+1);
                                         int connectX = (int) connect.get(i);
-                                        bollenlijst.get(7 * connectY + connectX).setIcon(bollenlijst.get((7 * connectY + connectX)-7).getIcon());
+
+                                        if (((7 * connectY + connectX)-7) < 0){
+                                            bollenlijst.get(7 * connectY + connectX).setKleurGetal();
+                                        }
+
+                                        //bollenlijst.get((7 * connectY + connectX) - 7).setIcon(bollenlijst.get((7 * connectY + connectX) - 14).getIcon());
+
                                     }
                                 }
                             } else {
@@ -250,6 +257,7 @@ public class Board extends JFrame {
                             connect.add(firstXclick);
                             connect.add(firstYclick);
                             connectcounter += 1;
+                            dot.setConnected(true);
                             color = dot.getColor();
                             lines.clear();
                             makeLine.repaint();
