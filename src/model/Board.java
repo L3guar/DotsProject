@@ -233,7 +233,7 @@ public class Board extends JFrame {
 
                                         int connectY = (int) connect.get(i+1);
                                         int connectX = (int) connect.get(i);
-                                        bollenlijst.get(7 * connectY + connectX + 1).setIcon(bollenlijst.get((7 * connectY + connectX + 1)-7).getIcon());
+                                        bollenlijst.get(7 * connectY + connectX).setIcon(bollenlijst.get((7 * connectY + connectX)-7).getIcon());
                                     }
                                 }
                             } else {
