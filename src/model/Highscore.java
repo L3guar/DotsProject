@@ -4,13 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by Sezer on 5/02/2015.
  */
 public class Highscore extends JFrame {
 
-    private int[] highscores;
+    private String name = Menu.getNaam();
+    private int score = Board.getPuntenGehaaldTotaal();
 
     private JPanel titelPaneel;
     private JPanel textPaneel;
@@ -21,6 +25,24 @@ public class Highscore extends JFrame {
     private JLabel terug;
 
     private Color dankRed = new Color(178, 8, 8);
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public Highscore() throws HeadlessException {
         super("Dots | Highscores");
@@ -84,4 +106,21 @@ public class Highscore extends JFrame {
         textPaneel.add(highscoreLijst);
         terugPaneel.add(terug);
     }
+
+    public void writeFile() {
+        try {
+            FileWriter write = new FileWriter("highscores.txt", true);
+            PrintWriter text = new PrintWriter(write);
+            text.println( name + " " + score);
+            text.flush();
+            write.close();
+
+        } catch (IOException ioe)
+        // writes name from textfield(username) and score from board class
+        // into text document text.txt
+        {
+            ioe.printStackTrace();
+        }
+    }
+
 }

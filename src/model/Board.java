@@ -54,7 +54,7 @@ public class Board extends JFrame {
 
     //TIMER
     Timer timer;
-    int counter = 60;
+    int counter = 5;
 
     //Controleren of de pausebutton al is gebruikt variabel
     boolean clicked = false;
@@ -65,7 +65,7 @@ public class Board extends JFrame {
     int level = 1;
 
     //highscores berekenen variabel
-    int puntenGehaaldTotaal = 0;
+    static int puntenGehaaldTotaal = 0;
 
     //hoofdframe
     public Board() {
@@ -132,6 +132,12 @@ public class Board extends JFrame {
                     if (score < target) {
                         System.out.println("TE WEINIG PUNTEN");
                         JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
+                        Highscore highscore = new Highscore();
+                        highscore.setEnabled(false);
+                        highscore.writeFile();
+                        highscore.dispose();
+
+                        puntenGehaaldTotaal = 0;
                         level = 1;
                         score = 0;
                         target = 200;
@@ -345,7 +351,7 @@ public class Board extends JFrame {
                                             targetNumber.setText(String.valueOf(target));
                                             //timer stoppen en opnieuw laten tellen
                                             timer.stop();
-                                            counter = 60;
+                                            counter = 5;
                                             timer = new Timer(1000, new ActionListener() {
                                                 @Override
                                                 public void actionPerformed(ActionEvent e) {
@@ -357,6 +363,12 @@ public class Board extends JFrame {
                                                         if (score < target) {
                                                             System.out.println("TE WEINIG PUNTEN");
                                                             JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
+                                                            Highscore highscore = new Highscore();
+                                                            highscore.setEnabled(false);
+                                                            highscore.writeFile();
+                                                            highscore.dispose();
+
+                                                            puntenGehaaldTotaal = 0;
                                                             level = 1;
                                                             score = 0;
                                                             target = 200;
@@ -478,8 +490,7 @@ public class Board extends JFrame {
         }
     }
 
-    public int getLevel() {
-        return level;
+    public static int getPuntenGehaaldTotaal() {
+        return puntenGehaaldTotaal;
     }
-
 }
