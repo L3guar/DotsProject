@@ -395,4 +395,7 @@ public class Board extends JFrame {
     //      levelNumber += 1;
     //      //refresh labels level, score & target
     // }
+
+    //IDEE VOOR HIGHSCORES
+    // Rankschikken volgens levels, niet punten.
 }
