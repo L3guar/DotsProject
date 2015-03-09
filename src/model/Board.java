@@ -51,6 +51,9 @@ public class Board extends JFrame {
     Timer timer;
     int counter = 60;
 
+    //Controleren of de pausebutton al is gebruikt
+    boolean clicked = false;
+
     public Board() {
         super("Dots");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -127,6 +130,26 @@ public class Board extends JFrame {
 
     //listeners maken
     public void makeListeners() {
+        //pauseknop drukken om te pauzeren en herstarten
+        pauseIcon.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                if (clicked == false) {
+                    timer.stop();
+                    clicked = true;
+                    for (int i = 0; i < bollenlijst.size(); i++) {
+                        bollenlijst.get(i).setEnabled(false);
+                    }
+
+                } else {
+                    timer.start();
+                    clicked = false;
+                    for (int i = 0; i < bollenlijst.size(); i++) {
+                        bollenlijst.get(i).setEnabled(true);
+                    }
+                }
+            }
+        });
     }
 
     //layout maken
