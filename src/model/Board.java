@@ -16,6 +16,7 @@ import java.util.List;
 public class Board extends JFrame {
     private List<Dot> bollenlijst;
     private int firstIndicator = 0;
+    private int colorIndicator = 5;
     private int firstXclick = 1000;
     private int firstYclick = 1000;
     private int firstXcoord;
@@ -27,7 +28,6 @@ public class Board extends JFrame {
     private Color color;
     private List<Line> lines = new ArrayList<>();
     int connectcounter = 0;
-    Point connectPoint;
     ArrayList connect = new ArrayList();
     private JPanel menuPanel;
     private JPanel gridPanel;
@@ -223,7 +223,7 @@ public class Board extends JFrame {
                 // nieuwe dot toevoegen
                 final Dot dot = new Dot();
                 // random kleur van dot krijgen om te vergelijken
-                final int colorIndicator = dot.getColorIndicator();
+                colorIndicator = dot.getColorIndicator();
                 // coordinaten in de grid geven aan dot.
                 dot.setX(y);
                 dot.setY(x);
@@ -286,32 +286,43 @@ public class Board extends JFrame {
                                         int connectX = (int) connect.get(i);
 
                                         bollenlijst.get(7 * connectY + connectX).setKleurGetal();
-
-
+                                        colorIndicator = bollenlijst.get(7 * connectY + connectX).getColorIndicator();
                                     }
+                                    // zet connectcounter terug op 0 zodat we nieuwe serie kunnen beginnen
                                     connectcounter = 0;
+                                    // zet de kleur terug op niet bestaand zodat er geen problemen veroorzaakt worden
                                     firstIndicator = 5;
+                                    // maak de coordinaten leeg om een  nieuwe serie te beginnen
                                     connect.clear();
 
                                 }
+
                             } else {
                                 System.out.println("te ver!");
                             }
                         } else {
+
+                            // kleur veranderen => nieuwe serie
                             connectcounter = 0;
+                            // huidige kleur aanpassen
                             firstIndicator = colorIndicator;
+                            // coordinaten overnemen van nieuwe click
                             firstXclick = dotX;
                             firstYclick = dotY;
+                            // effectieve coordinaten opslagen
                             firstXcoord = dot.getX();
                             firstYcoord = dot.getY();
-                            connectPoint = dot.getLocation();
+                            // voeg de eerste click toe aan een nieuwe array.
+                            connect.clear();
                             connect.add(firstXclick);
                             connect.add(firstYclick);
+                            // we hebben een connectie dus +1
                             connectcounter += 1;
+                            // set kleur voor lijn te kleuren
                             color = dot.getColor();
+                            // verwijder lijnen
                             lines.clear();
                             makeLine.repaint();
-                            connect.clear();
 
                         }
                     }

@@ -48,7 +48,8 @@ public class Help extends JFrame {
         ImageIcon helpImage = new ImageIcon("image/helpImage.png");
         infoTekst = new JLabel("<html>" +
                                 "Dots is a game where you have to connect the dots with the same color. <br>" +
-                                "After you've connected the dots, new ones will appear. <br>" +
+                                "After you've connected the dots, click the last one to confirm. <br> " +
+                                "new ones will appear. <br>" +
                                 "Make sure you keep an eye on the time, your score and the target score.<br>" +
                                 "You can pause the game by pressing the pause button.<br>" +
                                 "After you've completed a game, your name will appear in the highscores if you have enough points." +
