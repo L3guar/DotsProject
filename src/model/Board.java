@@ -15,9 +15,13 @@ import java.util.List;
  */
 public class Board extends JFrame {
     private List<Dot> bollenlijst;
+    private List<Line> lines = new ArrayList<>();
+    private ArrayList connect = new ArrayList();
+
+    private boolean isClicked = false;
+
     private int firstIndicator = 0;
     private int colorIndicator = 5;
-    private boolean isClicked = false;
     private int firstXclick = 1000;
     private int firstYclick = 1000;
     private int firstXcoord;
@@ -26,10 +30,10 @@ public class Board extends JFrame {
     private int x2;
     private int y1;
     private int y2;
+    private int connectcounter = 0;
+
     private Color color;
-    private List<Line> lines = new ArrayList<>();
-    int connectcounter = 0;
-    ArrayList connect = new ArrayList();
+
     private JPanel menuPanel;
     private JPanel gridPanel;
     private JLayeredPane layeredPane;
@@ -50,16 +54,20 @@ public class Board extends JFrame {
 
     //TIMER
     Timer timer;
-    int counter = 5;
+    int counter = 60;
 
-    //Controleren of de pausebutton al is gebruikt
+    //Controleren of de pausebutton al is gebruikt variabel
     boolean clicked = false;
 
-    //Score & target & level berekenen
+    //Score, target & level berekenen variabel
     int score = 0;
     int target = 200;
     int level = 1;
 
+    //highscores berekenen variabel
+    int puntenGehaaldTotaal = 0;
+
+    //hoofdframe
     public Board() {
         super("Dots");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -78,6 +86,7 @@ public class Board extends JFrame {
         Font font = new Font("Impact", Font.PLAIN, 30);
         Color dankgreen = new Color(3, 173, 26);
 
+        //LEVEL
         levelTitle = new JLabel("level");
         levelTitle.setFont(font);
         levelTitle.setForeground(Color.RED);
@@ -86,6 +95,7 @@ public class Board extends JFrame {
         levelNumber.setFont(font);
         levelNumber.setForeground(Color.RED);
 
+        //SCORE
         scoreTitle = new JLabel("score");
         scoreTitle.setFont(font);
         scoreTitle.setForeground(dankgreen);
@@ -94,6 +104,7 @@ public class Board extends JFrame {
         scoreNumber.setFont(font);
         scoreNumber.setForeground(dankgreen);
 
+        //TARGET
         targetTitle = new JLabel("target");
         targetTitle.setFont(font);
         targetTitle.setForeground(Color.BLUE);
@@ -102,6 +113,7 @@ public class Board extends JFrame {
         targetNumber.setFont(font);
         targetNumber.setForeground(Color.BLUE);
 
+        //TIME
         timeTitle = new JLabel("time");
         timeTitle.setFont(font);
         timeTitle.setForeground(Color.ORANGE);
@@ -116,6 +128,7 @@ public class Board extends JFrame {
                 counter--;
                 if (counter < 0) {
                     timer.stop();
+                    //als je de target score niet hebt behaald reset hij alles en kan je opnieuw beginnen.
                     if (score < target) {
                         System.out.println("TE WEINIG PUNTEN");
                         JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
@@ -134,7 +147,7 @@ public class Board extends JFrame {
         timer.start();
 
 
-        //pauze afbeelding en resizen
+        //PAUSEBUTTON + RESIZE
         ImageIcon icon = new ImageIcon("image/PauseButton.png");
         Image img = icon.getImage();
         BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
@@ -197,12 +210,14 @@ public class Board extends JFrame {
         rightLabel.setPreferredSize(new Dimension(25, 0));
         underLabel = new JLabel("");
         underLabel.setPreferredSize(new Dimension(0, 50));
+
         //add(linePanel, BorderLayout.PAGE_START);
         add(menuPanel, BorderLayout.PAGE_START);
         add(leftLabel, BorderLayout.WEST);
         add(layeredPane, BorderLayout.CENTER);
         add(rightLabel, BorderLayout.EAST);
         add(underLabel, BorderLayout.PAGE_END);
+
         //menu attributen aan menu toevoegen en ordenen volgens het GridBagLayout principe
         gbc.insets = new Insets(15, 15, 15, 15);
         gbc.gridx = 1;
@@ -235,6 +250,7 @@ public class Board extends JFrame {
         gbc.gridx = 5;
         gbc.gridy = 1;
         menuPanel.add(timeNumber, gbc);
+
         //grid met dots toevoegen
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 7; y++) {
@@ -319,23 +335,24 @@ public class Board extends JFrame {
 
                                         //target en levels berekenen
                                         if (score >= target) {
+                                            puntenGehaaldTotaal += score;
                                             score = 0;
                                             scoreNumber.setText(String.valueOf(score));
+                                            System.out.println("puntenGehaaldTotaal = " + puntenGehaaldTotaal);
                                             level += 1;
                                             levelNumber.setText(String.valueOf(level));
                                             target += (level - 1) * 20;
                                             targetNumber.setText(String.valueOf(target));
                                             //timer stoppen en opnieuw laten tellen
                                             timer.stop();
-                                            counter = 5;
+                                            counter = 60;
                                             timer = new Timer(1000, new ActionListener() {
                                                 @Override
                                                 public void actionPerformed(ActionEvent e) {
                                                     timeNumber.setText(String.valueOf(counter));
                                                     counter--;
-                                                    //als je de target score niet hebt behaald reset hij alles en kan je opnieuw beginnen.
+                                                    //als je de target score niet hebt behaald reset hij alles en kan je opnieuw beginnen. -> dit is voor levels hoger als 1
                                                     if (counter < 0) {
-                                                        System.out.println("hoiiii");
                                                         timer.stop();
                                                         if (score < target) {
                                                             System.out.println("TE WEINIG PUNTEN");
@@ -414,8 +431,10 @@ public class Board extends JFrame {
             super.paintComponent(g);
             Graphics2D g2d = (Graphics2D) g;
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
             //Dikte van lijnen instellen
             g2d.setStroke(new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
+
             //Teken lijn(en)
             for (Line line : lines) {
                 g2d.setColor(line.getColor());
@@ -463,24 +482,4 @@ public class Board extends JFrame {
         return level;
     }
 
-
-    //IDEE VOOR SCORE TE BEREKENEN
-    //int scoreMultiplier = line.getSize();
-    // score = 10 * scoreMultiplier;
-    // scoreNumber moet elke keer geupdate worden na er een lijn wordt getrokken -> actionlistener
-
-    //IDEE VOOR TARGET SCORE
-    // int targetNumber = 200; //begin
-    // targetNumber += (getCurrentLevel - 1) * 25
-    // refresh label
-
-    //IDEE VOOR LEVELS
-    // levelNumber = 1; //begin
-    // if(scoreNumber >= targetNumber){
-    //      levelNumber += 1;
-    //      //refresh labels level, score & target
-    // }
-
-    //IDEE VOOR HIGHSCORES
-    // Rankschikken volgens levels, niet punten.
 }
