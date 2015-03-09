@@ -17,6 +17,7 @@ public class Board extends JFrame {
     private List<Dot> bollenlijst;
     private int firstIndicator = 0;
     private int colorIndicator = 5;
+    private boolean isClicked = false;
     private int firstXclick = 1000;
     private int firstYclick = 1000;
     private int firstXcoord;
@@ -63,7 +64,7 @@ public class Board extends JFrame {
         pack();
         setSize(575, 725);
         setLocationRelativeTo(this);
-        setResizable(false);
+        setResizable(true);
         setVisible(true);
     }
 
@@ -222,8 +223,6 @@ public class Board extends JFrame {
             for (int y = 0; y < 7; y++) {
                 // nieuwe dot toevoegen
                 final Dot dot = new Dot();
-                // random kleur van dot krijgen om te vergelijken
-
                 // coordinaten in de grid geven aan dot.
                 dot.setX(y);
                 dot.setY(x);
@@ -244,66 +243,74 @@ public class Board extends JFrame {
                         colorIndicator = dot.getColorIndicator();
                         // kijk of de volgende bol dezelfde kleur heeft
                         if (firstIndicator == colorIndicator) {
-                            // kijk of de bol in dezelfde omstreek ligt.
-                            if (firstXclick == dotX - 1 && firstYclick == dotY - 1 || firstXclick == dotX && firstYclick == dotY - 1
-                                    || firstXclick == dotX + 1 && firstYclick == dotY - 1 || firstXclick == dotX + 1 && firstYclick == dotY
-                                    || firstXclick == dotX - 1 && firstYclick == dotY || firstXclick == dotX - 1 && firstYclick == dotY + 1
-                                    || firstXclick == dotX && firstYclick == dotY + 1 || firstXclick == dotX + 1 && firstYclick == dotY + 1) {
-                                System.out.println("yay");
-                                // verander de tweede bol in de eerste bol
-                                firstXclick = dotX;
-                                firstYclick = dotY;
-                                // maak een array met lijnen tussen laatste twee geklikte dots
-                                Slang connectLine = new Slang(firstXcoord, firstYcoord, dot.getX(), dot.getY());
-                                x1 = connectLine.getX1();
-                                x2 = connectLine.getX2();
-                                y1 = connectLine.getY1();
-                                y2 = connectLine.getY2();
-                                // voeg de lijn toe aan array
-                                connect.add(firstXclick);
-                                connect.add(firstYclick);
-                                connectcounter += 1;
-                                // TE VERWIJDEREN ->
+                            isClicked = dot.isClicked();
+                            if (!isClicked || firstXclick == dotX && firstYclick == dotY) {
+                                // kijk of de bol in dezelfde omstreek ligt.
+                                if (firstXclick == dotX - 1 && firstYclick == dotY - 1 || firstXclick == dotX && firstYclick == dotY - 1
+                                        || firstXclick == dotX + 1 && firstYclick == dotY - 1 || firstXclick == dotX + 1 && firstYclick == dotY
+                                        || firstXclick == dotX - 1 && firstYclick == dotY || firstXclick == dotX - 1 && firstYclick == dotY + 1
+                                        || firstXclick == dotX && firstYclick == dotY + 1 || firstXclick == dotX + 1 && firstYclick == dotY + 1) {
+                                    System.out.println("yay");
+                                    // verander de tweede bol in de eerste bol
+                                    firstXclick = dotX;
+                                    firstYclick = dotY;
+                                    // maak een array met lijnen tussen laatste twee geklikte dots
+                                    Slang connectLine = new Slang(firstXcoord, firstYcoord, dot.getX(), dot.getY());
+                                    x1 = connectLine.getX1();
+                                    x2 = connectLine.getX2();
+                                    y1 = connectLine.getY1();
+                                    y2 = connectLine.getY2();
+                                    // voeg de lijn toe aan array
+                                    connect.add(firstXclick);
+                                    connect.add(firstYclick);
+                                    connectcounter += 1;
+                                    dot.setClicked(true);
+                                    // TE VERWIJDEREN ->
 
-                                for (int i = 0; i < connect.size(); i++) {
-                                    System.out.println(connect.get(i));
-                                }
-                                //  <- TE VERWIJDEREN
-                                makeLine.addLine(new Line(x1, x2, y1, y2, color));
-                                makeLine.repaint();
-                                gridPanel.repaint();
-                                firstXcoord = x2;
-                                firstYcoord = y2;
-                            } else if (firstXclick == dotX && firstYclick == dotY) {
-                                // verwijder de lijnen door op hetzelfde dot te klikken
-                                lines.clear();
-                                makeLine.repaint();
-                                // als het aantal connected dots groter of gelijk is aan 2
-                                if (connectcounter > 1) {
-                                    // verdwijder de dots die connected waren
-                                    for (int i = 0; i < connect.size(); i+=2) {
-
-                                        int connectY = (int) connect.get(i+1);
-                                        int connectX = (int) connect.get(i);
-
-                                        bollenlijst.get(7 * connectY + connectX).setKleurGetal();
-                                        colorIndicator = bollenlijst.get(7 * connectY + connectX).getColorIndicator();
+                                    for (int i = 0; i < connect.size(); i++) {
+                                        System.out.println(connect.get(i));
                                     }
-                                    // zet connectcounter terug op 0 zodat we nieuwe serie kunnen beginnen
-                                    connectcounter = 0;
-                                    // zet de kleur terug op niet bestaand zodat er geen problemen veroorzaakt worden
-                                    firstIndicator = 5;
-                                    // maak de coordinaten leeg om een  nieuwe serie te beginnen
-                                    connect.clear();
+                                    //  <- TE VERWIJDEREN
+                                    makeLine.addLine(new Line(x1, x2, y1, y2, color));
+                                    makeLine.repaint();
+                                    gridPanel.repaint();
+                                    firstXcoord = x2;
+                                    firstYcoord = y2;
+                                } else if (firstXclick == dotX && firstYclick == dotY) {
+                                    // verwijder de lijnen door op hetzelfde dot te klikken
+                                    lines.clear();
+                                    makeLine.repaint();
+                                    // als het aantal connected dots groter of gelijk is aan 2
+                                    if (connectcounter > 1) {
+                                        // verdwijder de dots die connected waren
+                                        for (int i = 0; i < connect.size(); i += 2) {
+
+                                            int connectY = (int) connect.get(i + 1);
+                                            int connectX = (int) connect.get(i);
+
+                                            bollenlijst.get(7 * connectY + connectX).setKleurGetal();
+                                            colorIndicator = bollenlijst.get(7 * connectY + connectX).getColorIndicator();
+                                            bollenlijst.get(7 * connectY + connectX).setClicked(false);
+                                        }
+                                        // zet connectcounter terug op 0 zodat we nieuwe serie kunnen beginnen
+                                        connectcounter = 0;
+                                        // zet de kleur terug op niet bestaand zodat er geen problemen veroorzaakt worden
+                                        firstIndicator = 5;
+                                        // maak de coordinaten leeg om een  nieuwe serie te beginnen
+                                        connect.clear();
 
 
+                                    }
+
+                                } else {
+                                    System.out.println("te ver!");
                                 }
-
-                            } else {
-                                System.out.println("te ver!");
+                            } else{
+                                System.out.println("Al geklikt!");
                             }
                         } else {
 
+                            dot.setClicked(true);
                             // kleur veranderen => nieuwe serie
                             connectcounter = 0;
                             // huidige kleur aanpassen

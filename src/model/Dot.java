@@ -15,8 +15,17 @@ public class Dot extends JButton{
     private int kleurIndicator;
     private Color color;
     private int kleurGetal;
+    private boolean isClicked;
     Random rand = new Random();
     CoordinatenTest model = new CoordinatenTest();
+
+    public void setClicked(boolean isClicked) {
+        this.isClicked = isClicked;
+    }
+
+    public boolean isClicked() {
+        return isClicked;
+    }
 
     public Dot(){
         kleurGetal = rand.nextInt(4)+1;
@@ -25,6 +34,7 @@ public class Dot extends JButton{
             case 1:
                 this.kleurIndicator = 1;
                 color = Color.orange;
+                isClicked = false;
                 setIcon(new ImageIcon("image/geel.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -35,6 +45,7 @@ public class Dot extends JButton{
             case 2:
                 this.kleurIndicator = 2;
                 color = Color.blue;
+                isClicked = false;
                 setIcon(new ImageIcon("image/blauw.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -45,6 +56,7 @@ public class Dot extends JButton{
             case 3:
                 this.kleurIndicator = 3;
                 color = color.red;
+                isClicked = false;
                 setIcon(new ImageIcon("image/rood.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -55,6 +67,8 @@ public class Dot extends JButton{
             case 4:
                 this.kleurIndicator = 4;
                 color = color.green;
+                isClicked = false;
+
                 setIcon(new ImageIcon("image/dankgreen.png"));
                 addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
