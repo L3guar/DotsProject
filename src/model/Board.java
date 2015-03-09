@@ -238,7 +238,6 @@ public class Board extends JFrame {
                                 // voeg de lijn toe aan array
                                 connect.add(firstXclick);
                                 connect.add(firstYclick);
-                                dot.setConnected(true);
                                 connectcounter += 1;
                                 // TE VERWIJDEREN ->
 
@@ -263,27 +262,13 @@ public class Board extends JFrame {
                                         int connectY = (int) connect.get(i+1);
                                         int connectX = (int) connect.get(i);
 
-                                        if (((7 * connectY + connectX)-7) < 0){
-                                            bollenlijst.get(7 * connectY + connectX).setKleurGetal();
-                                        } else if (((7 * connectY + connectX)-14) < 0){
+                                        bollenlijst.get(7 * connectY + connectX).setKleurGetal();
 
-                                            if (bollenlijst.get((7 * connectY + connectX) - 7).isConnected()) {
-
-                                                bollenlijst.get(7 * connectY + connectX).setKleurGetal();
-                                                bollenlijst.get((7 * connectY + connectX)-7).setKleurGetal();
-
-                                            } else {
-                                                bollenlijst.get(7 * connectY + connectX).setIcon(bollenlijst.get((7 * connectY + connectX) - 7).getIcon());
-                                                bollenlijst.get((7 * connectY + connectX)-7).setKleurGetal();
-                                            }
-
-                                        }
-
-                                        bollenlijst.get(7 * connectY + connectX).setConnected(false);
 
                                     }
                                     connectcounter = 0;
-                                    firstIndicator = 4;
+                                    firstIndicator = 5;
+                                    connect.clear();
 
                                 }
                             } else {
@@ -300,10 +285,10 @@ public class Board extends JFrame {
                             connect.add(firstXclick);
                             connect.add(firstYclick);
                             connectcounter += 1;
-                            dot.setConnected(true);
                             color = dot.getColor();
                             lines.clear();
                             makeLine.repaint();
+                            connect.clear();
 
                         }
                     }
