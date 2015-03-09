@@ -50,7 +50,7 @@ public class Board extends JFrame {
 
     //TIMER
     Timer timer;
-    int counter = 60;
+    int counter = 5;
 
     //Controleren of de pausebutton al is gebruikt
     boolean clicked = false;
@@ -116,6 +116,18 @@ public class Board extends JFrame {
                 counter--;
                 if (counter < 0) {
                     timer.stop();
+                    if (score < target) {
+                        System.out.println("TE WEINIG PUNTEN");
+                        JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
+                        level = 1;
+                        score = 0;
+                        target = 200;
+                        scoreNumber.setText(String.valueOf(score));
+                        levelNumber.setText(String.valueOf(level));
+                        targetNumber.setText(String.valueOf(target));
+                        counter = 60;
+                        timer.start();
+                    }
                 }
             }
         });
@@ -315,14 +327,28 @@ public class Board extends JFrame {
                                             targetNumber.setText(String.valueOf(target));
                                             //timer stoppen en opnieuw laten tellen
                                             timer.stop();
-                                            counter = 60;
+                                            counter = 5;
                                             timer = new Timer(1000, new ActionListener() {
                                                 @Override
                                                 public void actionPerformed(ActionEvent e) {
                                                     timeNumber.setText(String.valueOf(counter));
                                                     counter--;
+                                                    //als je de target score niet hebt behaald reset hij alles en kan je opnieuw beginnen.
                                                     if (counter < 0) {
+                                                        System.out.println("hoiiii");
                                                         timer.stop();
+                                                        if (score < target) {
+                                                            System.out.println("TE WEINIG PUNTEN");
+                                                            JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
+                                                            level = 1;
+                                                            score = 0;
+                                                            target = 200;
+                                                            scoreNumber.setText(String.valueOf(score));
+                                                            levelNumber.setText(String.valueOf(level));
+                                                            targetNumber.setText(String.valueOf(target));
+                                                            counter = 60;
+                                                            timer.start();
+                                                        }
                                                     }
                                                 }
                                             });
