@@ -311,6 +311,9 @@ public class Board extends JFrame {
                                             scoreNumber.setText(String.valueOf(score));
                                             level += 1;
                                             levelNumber.setText(String.valueOf(level));
+                                            target += (level - 1) * 20;
+                                            targetNumber.setText(String.valueOf(target));
+
                                         }
 
                                         // maak de coordinaten leeg om een  nieuwe serie te beginnen
