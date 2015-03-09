@@ -23,7 +23,7 @@ public class Dot extends JButton{
 
         switch (kleurGetal) {
             case 1:
-                kleurIndicator = 1;
+                this.kleurIndicator = 1;
                 color = Color.orange;
                 setIcon(new ImageIcon("image/geel.png"));
                 addActionListener(new ActionListener() {
@@ -33,7 +33,7 @@ public class Dot extends JButton{
                 });
                 break;
             case 2:
-                kleurIndicator = 2;
+                this.kleurIndicator = 2;
                 color = Color.blue;
                 setIcon(new ImageIcon("image/blauw.png"));
                 addActionListener(new ActionListener() {
@@ -43,7 +43,7 @@ public class Dot extends JButton{
                 });
                 break;
             case 3:
-                kleurIndicator = 3;
+                this.kleurIndicator = 3;
                 color = color.red;
                 setIcon(new ImageIcon("image/rood.png"));
                 addActionListener(new ActionListener() {
@@ -53,7 +53,7 @@ public class Dot extends JButton{
                 });
                 break;
             case 4:
-                kleurIndicator = 4;
+                this.kleurIndicator = 4;
                 color = color.green;
                 setIcon(new ImageIcon("image/dankgreen.png"));
                 addActionListener(new ActionListener() {
@@ -71,32 +71,28 @@ public class Dot extends JButton{
         kleurGetal = rand.nextInt(4)+1;
         switch (kleurGetal) {
             case 1:
-                kleurIndicator = 1;
+                this.kleurIndicator = 1;
                 color = Color.orange;
                 setIcon(new ImageIcon("image/geel.png"));
                 break;
             case 2:
-                kleurIndicator = 2;
+                this.kleurIndicator = 2;
                 color = Color.blue;
                 setIcon(new ImageIcon("image/blauw.png"));
                 break;
             case 3:
-                kleurIndicator = 3;
+                this.kleurIndicator = 3;
                 color = color.red;
                 setIcon(new ImageIcon("image/rood.png"));
                 break;
             case 4:
-                kleurIndicator = 4;
+                this.kleurIndicator = 4;
                 color = color.green;
                 setIcon(new ImageIcon("image/dankgreen.png"));
                 break;
             default:
                 break;
         }
-    }
-
-    public void setKleurIndicator(int kleurIndicator) {
-        this.kleurIndicator = kleurIndicator;
     }
 
     public int getColorIndicator() {

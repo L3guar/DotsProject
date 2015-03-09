@@ -223,7 +223,7 @@ public class Board extends JFrame {
                 // nieuwe dot toevoegen
                 final Dot dot = new Dot();
                 // random kleur van dot krijgen om te vergelijken
-                colorIndicator = dot.getColorIndicator();
+
                 // coordinaten in de grid geven aan dot.
                 dot.setX(y);
                 dot.setY(x);
@@ -241,6 +241,7 @@ public class Board extends JFrame {
                 dot.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
+                        colorIndicator = dot.getColorIndicator();
                         // kijk of de volgende bol dezelfde kleur heeft
                         if (firstIndicator == colorIndicator) {
                             // kijk of de bol in dezelfde omstreek ligt.
