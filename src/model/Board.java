@@ -55,6 +55,11 @@ public class Board extends JFrame {
     //Controleren of de pausebutton al is gebruikt
     boolean clicked = false;
 
+    //Score & target & level berekenen
+    int score = 0;
+    int target = 200;
+    int level = 1;
+
     public Board() {
         super("Dots");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -85,7 +90,7 @@ public class Board extends JFrame {
         scoreTitle.setFont(font);
         scoreTitle.setForeground(dankgreen);
 
-        scoreNumber = new JLabel("2");
+        scoreNumber = new JLabel("0");
         scoreNumber.setFont(font);
         scoreNumber.setForeground(dankgreen);
 
@@ -93,7 +98,7 @@ public class Board extends JFrame {
         targetTitle.setFont(font);
         targetTitle.setForeground(Color.BLUE);
 
-        targetNumber = new JLabel("3");
+        targetNumber = new JLabel("200");
         targetNumber.setFont(font);
         targetNumber.setForeground(Color.BLUE);
 
@@ -296,6 +301,18 @@ public class Board extends JFrame {
                                         connectcounter = 0;
                                         // zet de kleur terug op niet bestaand zodat er geen problemen veroorzaakt worden
                                         firstIndicator = 5;
+                                        // lengte connect opslagen voordat je het leeg maakt
+                                        score += (connect.size() / 2) * 10;
+                                        scoreNumber.setText(String.valueOf(score));
+
+                                        //target en levels berekenen
+                                        if (score >= target) {
+                                            score = 0;
+                                            scoreNumber.setText(String.valueOf(score));
+                                            level += 1;
+                                            levelNumber.setText(String.valueOf(level));
+                                        }
+
                                         // maak de coordinaten leeg om een  nieuwe serie te beginnen
                                         connect.clear();
 
@@ -398,6 +415,11 @@ public class Board extends JFrame {
             return color;
         }
     }
+
+    public int getLevel() {
+        return level;
+    }
+
 
     //IDEE VOOR SCORE TE BEREKENEN
     //int scoreMultiplier = line.getSize();
