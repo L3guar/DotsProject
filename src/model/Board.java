@@ -295,6 +295,7 @@ public class Board extends JFrame {
                                     // maak de coordinaten leeg om een  nieuwe serie te beginnen
                                     connect.clear();
 
+
                                 }
 
                             } else {
