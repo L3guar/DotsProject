@@ -378,4 +378,21 @@ public class Board extends JFrame {
             return color;
         }
     }
+
+    //IDEE VOOR SCORE TE BEREKENEN
+    //int scoreMultiplier = line.getSize();
+    // score = 10 * scoreMultiplier;
+    // scoreNumber moet elke keer geupdate worden na er een lijn wordt getrokken -> actionlistener
+
+    //IDEE VOOR TARGET SCORE
+    // int targetNumber = 200; //begin
+    // targetNumber += (getCurrentLevel - 1) * 25
+    // refresh label
+
+    //IDEE VOOR LEVELS
+    // levelNumber = 1; //begin
+    // if(scoreNumber >= targetNumber){
+    //      levelNumber += 1;
+    //      //refresh labels level, score & target
+    // }
 }
