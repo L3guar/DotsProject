@@ -114,7 +114,7 @@ public class Board extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 timeNumber.setText(String.valueOf(counter));
                 counter--;
-                if (counter <= -1) {
+                if (counter < 0) {
                     timer.stop();
                 }
             }
@@ -313,6 +313,20 @@ public class Board extends JFrame {
                                             levelNumber.setText(String.valueOf(level));
                                             target += (level - 1) * 20;
                                             targetNumber.setText(String.valueOf(target));
+                                            //timer stoppen en opnieuw laten tellen
+                                            timer.stop();
+                                            counter = 60;
+                                            timer = new Timer(1000, new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    timeNumber.setText(String.valueOf(counter));
+                                                    counter--;
+                                                    if (counter < 0) {
+                                                        timer.stop();
+                                                    }
+                                                }
+                                            });
+                                            timer.start();
 
                                         }
 
