@@ -359,7 +359,7 @@ public class Board extends JFrame {
                                         // zet de kleur terug op niet bestaand zodat er geen problemen veroorzaakt worden
                                         firstIndicator = 5;
                                         // lengte connect opslagen voordat je het leeg maakt
-                                        score += ((connect.size() / 2) * 10 + (connect.size()/2)*0.2*10);
+                                        score += ((connect.size() / 2) * 10 + (connect.size()/2)*(connect.size()/2));
                                         scoreNumber.setText(String.valueOf(score));
 
                                         //target en levels berekenen
