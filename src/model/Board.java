@@ -211,7 +211,7 @@ public class Board extends JFrame {
         layeredPane.add(makeLine, 2);
 
         leftLabel = new JLabel("");
-        leftLabel.setPreferredSize(new Dimension(0, 0));
+        leftLabel.setPreferredSize(new Dimension(25, 0));
         rightLabel = new JLabel("");
         rightLabel.setPreferredSize(new Dimension(25, 0));
         underLabel = new JLabel("");
@@ -289,7 +289,7 @@ public class Board extends JFrame {
                                         || firstXclick == dotX + 1 && firstYclick == dotY - 1 || firstXclick == dotX + 1 && firstYclick == dotY
                                         || firstXclick == dotX - 1 && firstYclick == dotY || firstXclick == dotX - 1 && firstYclick == dotY + 1
                                         || firstXclick == dotX && firstYclick == dotY + 1 || firstXclick == dotX + 1 && firstYclick == dotY + 1) {
-                                    System.out.println("yay");
+
                                     // verander de tweede bol in de eerste bol
                                     firstXclick = dotX;
                                     firstYclick = dotY;
@@ -304,12 +304,7 @@ public class Board extends JFrame {
                                     connect.add(firstYclick);
                                     connectcounter += 1;
                                     dot.setClicked(true);
-                                    // TE VERWIJDEREN ->
 
-                                    for (int i = 0; i < connect.size(); i++) {
-                                        System.out.println(connect.get(i));
-                                    }
-                                    //  <- TE VERWIJDEREN
                                     makeLine.addLine(new Line(x1, x2, y1, y2, color));
                                     makeLine.repaint();
                                     gridPanel.repaint();
@@ -336,7 +331,7 @@ public class Board extends JFrame {
                                         // zet de kleur terug op niet bestaand zodat er geen problemen veroorzaakt worden
                                         firstIndicator = 5;
                                         // lengte connect opslagen voordat je het leeg maakt
-                                        score += (connect.size() / 2) * 10;
+                                        score += ((connect.size() / 2) * 10 + (connect.size()/2)*0.2*10);
                                         scoreNumber.setText(String.valueOf(score));
 
                                         //target en levels berekenen
@@ -347,7 +342,7 @@ public class Board extends JFrame {
                                             System.out.println("puntenGehaaldTotaal = " + puntenGehaaldTotaal);
                                             level += 1;
                                             levelNumber.setText(String.valueOf(level));
-                                            target += (level - 1) * 20;
+                                            target += (level - 1) * 30;
                                             targetNumber.setText(String.valueOf(target));
                                             //timer stoppen en opnieuw laten tellen
                                             timer.stop();
@@ -400,6 +395,9 @@ public class Board extends JFrame {
                         } else {
 
                             dot.setClicked(true);
+                            for (int i = 0; i < connect.size(); i += 2) {
+                                bollenlijst.get(7 * (int) connect.get(i + 1) + (int) connect.get(i)).setClicked(false);
+                            }
                             // kleur veranderen => nieuwe serie
                             connectcounter = 0;
                             // huidige kleur aanpassen

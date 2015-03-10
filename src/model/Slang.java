@@ -18,7 +18,6 @@ public class Slang extends JPanel{
         this.y1 = eersteYCoord;
         this.x2 = x;
         this.y2 = y;
-        System.out.println("I got here");
     }
 
 
