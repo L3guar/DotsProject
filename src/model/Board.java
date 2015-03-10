@@ -278,6 +278,31 @@ public class Board extends JFrame {
                 dot.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
                 dot.addMouseListener(new MouseAdapter() {
                     @Override
+                    public void mousePressed(MouseEvent e) {
+                        colorIndicator = dot.getColorIndicator();
+                        switch (colorIndicator){
+                            case 1: dot.setIcon(new ImageIcon("image/geelPressed.png")); break;
+                            case 2: dot.setIcon(new ImageIcon("image/blauwPressed.png")); break;
+                            case 3: dot.setIcon(new ImageIcon("image/roodPressed.png")); break;
+                            case 4: dot.setIcon(new ImageIcon("image/groenPressed.png")); break;
+                            default: break;
+                        }
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                        colorIndicator = dot.getColorIndicator();
+                        switch (colorIndicator){
+                            case 1: dot.setIcon(new ImageIcon("image/geel.png")); break;
+                            case 2: dot.setIcon(new ImageIcon("image/blauw.png")); break;
+                            case 3: dot.setIcon(new ImageIcon("image/rood.png")); break;
+                            case 4: dot.setIcon(new ImageIcon("image/dankgreen.png")); break;
+                            default: break;
+                        }
+                    }
+
+                    @Override
                     public void mouseClicked(MouseEvent e) {
                         colorIndicator = dot.getColorIndicator();
                         // kijk of de volgende bol dezelfde kleur heeft
