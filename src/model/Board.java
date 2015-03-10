@@ -54,7 +54,7 @@ public class Board extends JFrame {
 
     //TIMER
     Timer timer;
-    int counter = 5;
+    int counter = 60;
 
     //Controleren of de pausebutton al is gebruikt variabel
     boolean clicked = false;
@@ -351,7 +351,7 @@ public class Board extends JFrame {
                                             targetNumber.setText(String.valueOf(target));
                                             //timer stoppen en opnieuw laten tellen
                                             timer.stop();
-                                            counter = 5;
+                                            counter = 60;
                                             timer = new Timer(1000, new ActionListener() {
                                                 @Override
                                                 public void actionPerformed(ActionEvent e) {
