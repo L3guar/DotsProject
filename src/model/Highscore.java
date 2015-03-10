@@ -4,9 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  * Created by Sezer on 5/02/2015.
@@ -21,8 +19,9 @@ public class Highscore extends JFrame {
     private JPanel terugPaneel;
 
     private JLabel titelLabel;
-    private JLabel highscoreLijst;
     private JLabel terug;
+
+    private JTextField highscoreLijst;
 
     private Color dankRed = new Color(178, 8, 8);
 
@@ -74,8 +73,23 @@ public class Highscore extends JFrame {
         titelLabel.setFont(font);
         titelLabel.setForeground(Color.WHITE);
 
-        //formatting werkt door html
-        highscoreLijst = new JLabel("<html><center>Sezer   25<br>Mick     24<br>Yannick  22<br>Sezer   22<br>Ismail  19<br>Ilias   14<br>Mick    9</center></html>");
+        highscoreLijst = new JTextField();
+        highscoreLijst.setOpaque(false);
+        highscoreLijst.setForeground(Color.WHITE);
+        highscoreLijst.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        highscoreLijst.setSize(500, 800);
+        highscoreLijst.setFocusable(false);
+        try {
+            FileReader fileStream = new FileReader("highscores.txt");
+            highscoreLijst.read(fileStream, "highscores.txt");
+            fileStream.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("IOExeption error!");
+            e.printStackTrace();
+        }
         highscoreLijst.setFont(font);
         highscoreLijst.setForeground(Color.WHITE);
 
@@ -111,14 +125,11 @@ public class Highscore extends JFrame {
         try {
             FileWriter write = new FileWriter("highscores.txt", true);
             PrintWriter text = new PrintWriter(write);
-            text.println( name + " " + score);
+            text.println( name + "       " + score);
             text.flush();
             write.close();
 
-        } catch (IOException ioe)
-        // writes name from textfield(username) and score from board class
-        // into text document text.txt
-        {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
     }

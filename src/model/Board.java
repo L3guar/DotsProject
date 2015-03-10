@@ -128,14 +128,15 @@ public class Board extends JFrame {
                 counter--;
                 if (counter < 0) {
                     timer.stop();
+                    puntenGehaaldTotaal += score;
                     //als je de target score niet hebt behaald reset hij alles en kan je opnieuw beginnen.
                     if (score < target) {
-                        System.out.println("TE WEINIG PUNTEN");
-                        JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
+                        JOptionPane.showMessageDialog(null, "You haven't reached the target. Let's see if you've done well!");
                         Highscore highscore = new Highscore();
-                        highscore.setEnabled(false);
                         highscore.writeFile();
                         highscore.dispose();
+                        Highscore highscores = new Highscore();
+                        dispose();
 
                         puntenGehaaldTotaal = 0;
                         level = 1;
@@ -176,6 +177,7 @@ public class Board extends JFrame {
                     clicked = true;
                     for (int i = 0; i < bollenlijst.size(); i++) {
                         bollenlijst.get(i).setEnabled(false);
+                        pauseIcon.setIcon(new ImageIcon("image/PlayButton.png"));
                     }
 
                 } else {
@@ -183,6 +185,7 @@ public class Board extends JFrame {
                     clicked = false;
                     for (int i = 0; i < bollenlijst.size(); i++) {
                         bollenlijst.get(i).setEnabled(true);
+                        pauseIcon.setIcon(new ImageIcon("image/PauseButton.png"));
                     }
                 }
             }
@@ -381,12 +384,13 @@ public class Board extends JFrame {
                                                     if (counter < 0) {
                                                         timer.stop();
                                                         if (score < target) {
-                                                            System.out.println("TE WEINIG PUNTEN");
-                                                            JOptionPane.showMessageDialog(null, "You haven't reached the target. Try again!");
+                                                            JOptionPane.showMessageDialog(null, "You haven't reached the target. Let's see if you've done well!");
                                                             Highscore highscore = new Highscore();
-                                                            highscore.setEnabled(false);
                                                             highscore.writeFile();
                                                             highscore.dispose();
+                                                            Highscore highscores = new Highscore();
+                                                            dispose();
+
 
                                                             puntenGehaaldTotaal = 0;
                                                             level = 1;
